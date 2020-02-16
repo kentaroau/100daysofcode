@@ -199,10 +199,11 @@
             transition: .35s;
         }
 
-        .blur{
+        .blur {
             filter: blur(3px);
             -webkit-filter: blur(3px);
         }
+
         @keyframes fadeInRight {
             0% {
                 opacity: 0;
@@ -243,10 +244,14 @@
         integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
 
     <script>
-        $('#toggle').click(function () {
-            $(this).toggleClass('active');
-            $('#overlay').toggleClass('open');
-            $('#container').toggleClass('blur');
+        $(document).ready(function () {
+
+            $('#toggle').click(function () {
+                $(this).toggleClass('active');
+                $('#overlay').toggleClass('open');
+                $('#container').toggleClass('blur');
+            });
+
         });
     </script>
 </body>
