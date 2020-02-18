@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <style>
+      @charset "UTF-8";
+      @import url(https://fonts.googleapis.com/css?family=Lusitana);
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+      }
+
+      body {
+        background-color: #fcfcf4;
+        font-family: "Lusitana", sans-serif;
+      }
+
+      p {
+        font-size: 20px;
+        line-height: 28px;
+        margin: 0 0 18px;
+      }
+      p span {
+        position: relative;
+        display: block;
+        font-size: 16px;
+        line-height: 20px;
+        padding: 12px 20px;
+        margin-bottom: 24px;
+        background-color: white;
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 2px 4px;
+      }
+      p span:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: -12px;
+        margin: auto;
+        background-color: #98b296;
+        width: 24px;
+        height: 24px;
+        border-radius: 100%;
+        box-shadow: rgba(0, 0, 0, 0.1) 0 0 0 3px;
+      }
+      p span:after {
+        content: "";
+        pointer-events: none;
+        position: absolute;
+        top: -2px;
+        bottom: 0;
+        left: -6px;
+        margin: auto;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 6px 8px 6px;
+        border-color: transparent transparent white transparent;
+      }
+
+      h1 {
+        font-size: 40px;
+        font-weight: normal;
+        line-height: 44px;
+        text-align: center;
+        margin-bottom: 18px;
+      }
+      @media (min-width: 500px) {
+        h1 {
+          font-size: 60px;
+          line-height: 64px;
+        }
+      }
+
+      h3 {
+        font-size: 24px;
+        font-weight: normal;
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      ul li {
+        cursor: pointer;
+        padding: 6px 20px;
+        font-size: 48px;
+      }
+
+      button {
+        opacity: 0.6;
+        background-color: transparent;
+        position: fixed;
+        z-index: 2;
+        top: 24px;
+        left: 24px;
+        border: none;
+        width: 36px;
+        height: 30px;
+        outline: none;
+        -webkit-transition: opacity 0.2s ease-out;
+        transition: opacity 0.2s ease-out;
+      }
+      button:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        right: auto;
+        width: 100%;
+        background: -webkit-gradient(
+          linear,
+          left top,
+          left bottom,
+          from(#98b296),
+          color-stop(20%, #98b296),
+          color-stop(20%, transparent),
+          color-stop(40%, transparent),
+          color-stop(40%, #98b296),
+          color-stop(60%, #98b296),
+          color-stop(60%, transparent),
+          color-stop(80%, transparent),
+          color-stop(80%, #98b296),
+          to(#98b296)
+        );
+        background: linear-gradient(
+          to bottom,
+          #98b296,
+          #98b296 20%,
+          transparent 20%,
+          transparent 40%,
+          #98b296 40%,
+          #98b296 60%,
+          transparent 60%,
+          transparent 80%,
+          #98b296 80%,
+          #98b296 100%
+        );
+        -webkit-transition: opacity 0.2s ease-out, width 0.2s 0.2s ease-out;
+        transition: opacity 0.2s ease-out, width 0.2s 0.2s ease-out;
+      }
+      button:after {
+        opacity: 0;
+        content: "×";
+        color: white;
+        position: absolute;
+        top: 16px;
+        left: -4px;
+        font-family: Arial, sans-serif;
+        font-size: 76px;
+        line-height: 0;
+        -webkit-transition: opacity 0.4s ease-out;
+        transition: opacity 0.4s ease-out;
+      }
+      button:active {
+        -webkit-transform: translateY(2px);
+        transform: translateY(2px);
+      }
+      button:hover {
+        opacity: 1;
+      }
+      .open button {
+        opacity: 1;
+      }
+      .open button:before {
+        opacity: 0;
+        width: 0;
+      }
+      .open button:after {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 0, 0) rotate(360deg);
+        transform: translate3d(0, 0, 0) rotate(360deg);
+        -webkit-transition: opacity 0.4s 1s ease-out,
+          -webkit-transform 0.4s 1s ease-out;
+        transition: opacity 0.4s 1s ease-out, -webkit-transform 0.4s 1s ease-out;
+        transition: transform 0.4s 1s ease-out, opacity 0.4s 1s ease-out;
+        transition: transform 0.4s 1s ease-out, opacity 0.4s 1s ease-out,
+          -webkit-transform 0.4s 1s ease-out;
+      }
+
+      nav {
+        z-index: 1;
+        position: fixed;
+        top: -100%;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        overflow: hidden;
+      }
+      nav:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        background: rgba(123, 156, 121, 0.98);
+        width: 100%;
+        height: 0;
+        padding-bottom: 100%;
+        border-radius: 100%;
+        -webkit-transform: scale(0.04), translateY(9999px);
+        transform: scale(0.04), translateY(9999px);
+        overflow: hidden;
+      }
+      .open nav {
+        top: 0;
+      }
+      .open nav:before {
+        -webkit-animation: menu-animation 0.8s ease-out forwards;
+        animation: menu-animation 0.8s ease-out forwards;
+      }
+
+      ul.menu {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate3d(-50%, -50%, 0);
+        transform: translate3d(-50%, -50%, 0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        -webkit-perspective: 1000;
+        perspective: 1000;
+        color: white;
+      }
+      ul.menu li {
+        opacity: 0;
+        text-align: center;
+        -webkit-transform: translate3d(0, 36px, 0);
+        transform: translate3d(0, 36px, 0);
+      }
+      ul.menu li:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        left: auto;
+        background-color: white;
+        height: 100%;
+        width: 0;
+        overflow: hidden;
+        -webkit-transition: width 0.14s ease-out;
+        transition: width 0.14s ease-out;
+      }
+      ul.menu li:after {
+        opacity: 0;
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        color: #98b296;
+        overflow: hidden;
+        -webkit-transform: translate(-24px, 6px);
+        transform: translate(-24px, 6px);
+        -webkit-transition: opacity 0.1s ease-out,
+          -webkit-transform 0.1s ease-out;
+        transition: opacity 0.1s ease-out, -webkit-transform 0.1s ease-out;
+        transition: transform 0.1s ease-out, opacity 0.1s ease-out;
+        transition: transform 0.1s ease-out, opacity 0.1s ease-out,
+          -webkit-transform 0.1s ease-out;
+      }
+      ul.menu li:hover:before {
+        left: 0;
+        right: auto;
+        width: 100%;
+      }
+      ul.menu li:hover:after {
+        opacity: 1;
+        padding: 0 20px;
+        -webkit-transform: translate(0px, 6px);
+        transform: translate(0px, 6px);
+        -webkit-transition: opacity 0.2s 0.14s ease-out,
+          -webkit-transform 0.2s 0.14s ease-out;
+        transition: opacity 0.2s 0.14s ease-out,
+          -webkit-transform 0.2s 0.14s ease-out;
+        transition: transform 0.2s 0.14s ease-out, opacity 0.2s 0.14s ease-out;
+        transition: transform 0.2s 0.14s ease-out, opacity 0.2s 0.14s ease-out,
+          -webkit-transform 0.2s 0.14s ease-out;
+      }
+      .open ul.menu li {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+        -webkit-transition: opacity 0.2s ease-out,
+          -webkit-transform 0.2s ease-out;
+        transition: opacity 0.2s ease-out, -webkit-transform 0.2s ease-out;
+        transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+        transition: transform 0.2s ease-out, opacity 0.2s ease-out,
+          -webkit-transform 0.2s ease-out;
+      }
+      .open ul.menu li:nth-child(1) {
+        -webkit-transition-delay: 0.75s;
+        transition-delay: 0.75s;
+      }
+      .open ul.menu li:nth-child(2) {
+        -webkit-transition-delay: 0.85s;
+        transition-delay: 0.85s;
+      }
+      .open ul.menu li:nth-child(3) {
+        -webkit-transition-delay: 0.95s;
+        transition-delay: 0.95s;
+      }
+      .open ul.menu li:nth-child(4) {
+        -webkit-transition-delay: 1.05s;
+        transition-delay: 1.05s;
+      }
+
+      article {
+        padding: 24px;
+        max-width: 600px;
+        margin: 60px auto;
+        -webkit-transition: 0.2s ease-out;
+        transition: 0.2s ease-out;
+      }
+      .open article {
+        -webkit-transform: scale(0.92);
+        transform: scale(0.92);
+        -webkit-transition: -webkit-transform 0.2s 0.41s ease-out;
+        transition: -webkit-transform 0.2s 0.41s ease-out;
+        transition: transform 0.2s 0.41s ease-out;
+        transition: transform 0.2s 0.41s ease-out,
+          -webkit-transform 0.2s 0.41s ease-out;
+      }
+
+      @-webkit-keyframes menu-animation {
+        0% {
+          opacity: 0;
+          -webkit-transform: scale(0.04) translateY(300%);
+          transform: scale(0.04) translateY(300%);
+        }
+        40% {
+          -webkit-transform: scale(0.04) translateY(0);
+          transform: scale(0.04) translateY(0);
+          -webkit-transition: ease-out;
+          transition: ease-out;
+        }
+        40% {
+          -webkit-transform: scale(0.04) translateY(0);
+          transform: scale(0.04) translateY(0);
+        }
+        60% {
+          opacity: 1;
+          -webkit-transform: scale(0.02) translateY(0px);
+          transform: scale(0.02) translateY(0px);
+        }
+        61% {
+          -webkit-transform: scale(0.04);
+          transform: scale(0.04);
+        }
+        99.9% {
+          height: 0;
+          padding-bottom: 100%;
+          border-radius: 100%;
+        }
+        100% {
+          -webkit-transform: scale(2);
+          transform: scale(2);
+          height: 100%;
+          padding-bottom: 0;
+          border-radius: 0;
+        }
+      }
+
+      @keyframes menu-animation {
+        0% {
+          opacity: 0;
+          -webkit-transform: scale(0.04) translateY(300%);
+          transform: scale(0.04) translateY(300%);
+        }
+        40% {
+          -webkit-transform: scale(0.04) translateY(0);
+          transform: scale(0.04) translateY(0);
+          -webkit-transition: ease-out;
+          transition: ease-out;
+        }
+        40% {
+          -webkit-transform: scale(0.04) translateY(0);
+          transform: scale(0.04) translateY(0);
+        }
+        60% {
+          opacity: 1;
+          -webkit-transform: scale(0.02) translateY(0px);
+          transform: scale(0.02) translateY(0px);
+        }
+        61% {
+          -webkit-transform: scale(0.04);
+          transform: scale(0.04);
+        }
+        99.9% {
+          height: 0;
+          padding-bottom: 100%;
+          border-radius: 100%;
+        }
+        100% {
+          -webkit-transform: scale(2);
+          transform: scale(2);
+          height: 100%;
+          padding-bottom: 0;
+          border-radius: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <button class="menu-toggle"></button>
+    <nav>
+      <ul class="menu">
+        <li data-text="Home">Home</li>
+        <li data-text="Projects">Projects</li>
+        <li data-text="About">About</li>
+        <li data-text="Contact">Contact</li>
+      </ul>
+    </nav>
+    <article>
+      <h1>This is an Article About Something</h1>
+      <h3>by Lauren Ipsum</h3>
+      <p>
+        <span
+          >Toggle the menu by clicking on the infamous hamburger icon in the top
+          left corner! It could be the most fun you will ever have.</span
+        >
+      </p>
+      <p>
+        Maybe it was the other George Michael. You know, the singer-songwriter.
+        This was a big get for God. I'm a scholar. I enjoy scholarly pursuits.
+        Suddenly playing with yourself is a scholarly pursuit? Wow. We're just
+        blowing through nap time, aren't we? I need a fake passport, preferably
+        to France… I like the way they think. Butterscotch! Want a lick?
+      </p>
+      <p>
+        I made a huge tiny mistake. What's gotten into you? Have you been eating
+        cheese? One of the guys told me to take my head out of my BOTTOM and get
+        back to work…my BOTTOM! Hahahaha. Go ahead, touch the Cornballer. She's
+        always got to wedge herself in the middle of us so that she can control
+        everything. Yeah. Mom's awesome.
+      </p>
+      <p>
+        No, no, it's pronounced a-nal-ra-pist. It wasn't really the
+        pronunciation that bothered me. Heyyyyyy, Uncle Father Oscar. Are you at
+        all concerned about an uprising? I know what an erection feels like,
+        Michael. We need a name. Maybe 'Operation Hot Mother'. A flower in my
+        garden, a mystery in my panties. She's not that Mexican, Mom. She's my
+        Mexican. And she's Columbian or something.
+      </p>
+      <p>
+        Well excuse me, Judge Reinhold. Well excuse me, Judge Reinhold! I could
+        use a leather jacket for when I'm on my hog and have to go into a
+        controlled slide. Happy. Family Love Michael. That's my son, you
+        pothead! I'll sacrifice anything for my children. There's a new daddy in
+        town. A discipline daddy.
+      </p>
+      <p>
+        I deceived you, mom. Tricked makes it sound like we have a playful
+        relationship. That coat costs more than your house! I've got a nice hard
+        cot with his name on it. You'd do that to your own brother? I said
+        "cot." The only thing I found in the fridge was a dead dove in a bag.
+        Gob: You didn't eat that, did you?
+      </p>
+    </article>
+  </body>
+  <script
+    src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
+    crossorigin="anonymous"
+  ></script>
+  <script>
+    $("button").on("click", function() {
+      $("body").toggleClass("open");
+    });
+  </script>
+</html>
