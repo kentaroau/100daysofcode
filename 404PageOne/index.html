@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.1.1/gsap.min.js"></script>
+    <style>
+        @import url("https://fonts.googleapis.com/css?family=Nunito+Sans");
+
+        :root {
+            --blue: #0e0620;
+            --white: #fff;
+            --green: coral;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            display: -webkit-box;
+            display: flex;
+            -webkit-box-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            justify-content: center;
+            font-family: "Nunito Sans";
+            color: var(--blue);
+            font-size: 1em;
+        }
+
+        button {
+            font-family: "Nunito Sans";
+        }
+
+        ul {
+            list-style-type: none;
+            -webkit-padding-start: 35px;
+            padding-inline-start: 35px;
+        }
+
+        svg {
+            width: 100%;
+            visibility: hidden;
+        }
+
+        h1 {
+            font-size: 7.5em;
+            margin: 15px 0px;
+            font-weight: bold;
+        }
+
+        h2 {
+            font-weight: bold;
+        }
+
+        .hamburger-menu {
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 35px;
+            z-index: 2;
+        }
+
+        .hamburger-menu button {
+            position: relative;
+            width: 30px;
+            height: 22px;
+            border: none;
+            background: none;
+            padding: 0;
+            cursor: pointer;
+        }
+
+        .hamburger-menu button span {
+            position: absolute;
+            height: 3px;
+            background: #000;
+            width: 100%;
+            left: 0px;
+            top: 0px;
+            -webkit-transition: 0.1s ease-in;
+            transition: 0.1s ease-in;
+        }
+
+        .hamburger-menu button span:nth-child(2) {
+            top: 9px;
+        }
+
+        .hamburger-menu button span:nth-child(3) {
+            top: 18px;
+        }
+
+        .hamburger-menu [data-state="open"] span:first-child {
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+            top: 10px;
+        }
+
+        .hamburger-menu [data-state="open"] span:nth-child(2) {
+            width: 0%;
+            opacity: 0;
+        }
+
+        .hamburger-menu [data-state="open"] span:nth-child(3) {
+            -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+            top: 10px;
+        }
+
+        nav {
+            position: absolute;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: var(--green);
+            color: var(--blue);
+            width: 300px;
+            z-index: 1;
+            padding-top: 80px;
+            -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+            -webkit-transition: 0.24s cubic-bezier(0.52, 0.01, 0.8, 1);
+            transition: 0.24s cubic-bezier(0.52, 0.01, 0.8, 1);
+        }
+
+        nav li {
+            -webkit-transform: translateX(-5px);
+            transform: translateX(-5px);
+            -webkit-transition: 0.16s cubic-bezier(0.44, 0.09, 0.46, 0.84);
+            transition: 0.16s cubic-bezier(0.44, 0.09, 0.46, 0.84);
+            opacity: 0;
+        }
+
+        nav a {
+            display: block;
+            font-size: 1.75em;
+            font-weight: bold;
+            text-decoration: none;
+            color: inherit;
+            -webkit-transition: 0.24s ease-in-out;
+            transition: 0.24s ease-in-out;
+        }
+
+        nav a:hover {
+            text-decoration: none;
+            color: var(--white);
+        }
+
+        nav[data-state="open"] {
+            -webkit-transform: translateX(0%);
+            transform: translateX(0%);
+        }
+
+        nav[data-state="open"] ul li:nth-child(1) {
+            -webkit-transition-delay: 0.16s;
+            transition-delay: 0.16s;
+            -webkit-transform: translateX(0px);
+            transform: translateX(0px);
+            opacity: 1;
+        }
+
+        nav[data-state="open"] ul li:nth-child(2) {
+            -webkit-transition-delay: 0.32s;
+            transition-delay: 0.32s;
+            -webkit-transform: translateX(0px);
+            transform: translateX(0px);
+            opacity: 1;
+        }
+
+        nav[data-state="open"] ul li:nth-child(3) {
+            -webkit-transition-delay: 0.48s;
+            transition-delay: 0.48s;
+            -webkit-transform: translateX(0px);
+            transform: translateX(0px);
+            opacity: 1;
+        }
+
+        nav[data-state="open"] ul li:nth-child(4) {
+            -webkit-transition-delay: 0.64s;
+            transition-delay: 0.64s;
+            -webkit-transform: translateX(0px);
+            transform: translateX(0px);
+            opacity: 1;
+        }
+
+        .btn {
+            z-index: 1;
+            overflow: hidden;
+            background: transparent;
+            position: relative;
+            padding: 8px 50px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1em;
+            letter-spacing: 2px;
+            -webkit-transition: 0.2s ease;
+            transition: 0.2s ease;
+            font-weight: bold;
+            margin: 5px 0px;
+        }
+
+        .btn.green {
+            border: 4px solid var(--green);
+            color: var(--blue);
+        }
+
+        .btn.green:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 0%;
+            height: 100%;
+            background: var(--green);
+            z-index: -1;
+            -webkit-transition: 0.2s ease;
+            transition: 0.2s ease;
+        }
+
+        .btn.green:hover {
+            color: var(--white);
+            background: var(--green);
+            -webkit-transition: 0.2s ease;
+            transition: 0.2s ease;
+        }
+
+        .btn.green:hover:before {
+            width: 100%;
+        }
+
+
+
+/* You could use :after - it doesn't really matter */
+.left:before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.4;
+    background-image: url('blob.svg');
+    background-repeat: no-repeat;
+    background-position: 50% 0;
+    -ms-background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+
+img.vert-move {
+    -webkit-animation: mover 1s infinite  alternate;
+    animation: mover 1s infinite  alternate;
+}
+
+@keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
+
+img.rotate-move{
+    animation: rotate 2s infinite alternate-reverse;
+
+}
+
+@keyframes rotate {
+    0% { transform: translateY(0); }
+    100% { 
+
+        transform: translateY(100px) rotate(20deg) ;
+    }
+}
+        </style>
+
+</head>
+
+<body>
+
+
+    <div class="hamburger-menu">
+        <button class="burger" data-state="closed">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+    <nav data-state="closed">
+        <ul>
+            <li>
+                <a href="#">Home</a>
+            </li>
+            <li>
+                <a href="#">Blog</a>
+            </li>
+            <li>
+                <a href="#">About</a>
+            </li>
+            <li>
+                <a href="#">Contact Me</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="left">
+                    <img class="img vert-move" src="moon.png" width="300" style="margin-left:120px" />
+                    <img class="img rotate-move" src="cat.png" width="300" style="margin-top:100px; margin-right: 40px;" />
+                </div>
+            </div>
+            <div class="col">
+                <h1>404</h1>
+                <h2>Hmm nothing is here! <span style="background:coral;color: white;">#100DaysOfCode</span></h2>
+                <p>Sorry the page you are trying to find is not here. Please go away!
+                </p>
+                <button class="btn green">GO BACK</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const burger = document.querySelector('.burger');
+        const nav = document.querySelector('nav');
+
+        burger.addEventListener('click', e => {
+            burger.dataset.state === 'closed' ? burger.dataset.state = "open" : burger.dataset.state = "closed";
+            nav.dataset.state === "closed" ? nav.dataset.state = "open" : nav.dataset.state = "closed";
+        });
+    </script>
+</body>
+
+</html>
