@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Page transitions - Example One</title>
+    <!-- jquery cdn -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+</head>
+
+<style>
+    *,
+    *:after,
+    *:before {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    body,
+    html {
+        font-size: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* Clearfix hack by Nicolas Gallagher: http://nicolasgallagher.com/micro-clearfix-hack/ */
+    .clearfix:before,
+    .clearfix:after {
+        content: " ";
+        display: table;
+    }
+
+    .clearfix:after {
+        clear: both;
+    }
+
+    body {
+        font-family: 'Lato', Calibri, Arial, sans-serif;
+        color: #fff;
+        background: #333;
+        overflow: hidden;
+    }
+
+
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .perspective {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        -webkit-perspective: 1200px;
+        -moz-perspective: 1200px;
+        perspective: 1200px;
+    }
+
+    .page {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        visibility: hidden;
+        overflow: hidden;
+        -webkit-backface-visibility: hidden;
+        -moz-backface-visibility: hidden;
+        backface-visibility: hidden;
+        -webkit-transform: translate3d(0, 0, 0);
+        -moz-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+        -webkit-transform-style: preserve-3d;
+        -moz-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+    }
+
+    .page-current,
+    .no-js .page {
+        visibility: visible;
+        z-index: 1;
+    }
+
+    .no-js body {
+        overflow: auto;
+    }
+
+    .page-ontop {
+        z-index: 999;
+    }
+
+    /* Text Styles, Colors, Backgrounds */
+
+    .page h1 {
+        font-weight: 300;
+        font-size: 4.4em;
+        line-height: 1;
+        margin: 0;
+        top: 12%;
+        width: 100%;
+        text-align: center;
+    }
+
+    .page h1 span {
+        font-family: 'Satisfy', serif;
+        font-weight: 400;
+        font-size: 40%;
+        text-transform: none;
+        word-spacing: 0;
+        letter-spacing: 0;
+        display: block;
+        opacity: 0.4;
+    }
+
+    .page h1 strong {
+        color: rgba(0, 0, 0, 0.1);
+    }
+
+    .page-1 {
+        background: #0ac2d2;
+    }
+
+    .page-2 {
+        background: #7bb7fa;
+    }
+
+    .page-3 {
+        background: #60d7a9;
+    }
+
+    .page-4 {
+        background: #fdc162;
+    }
+
+    .page-5 {
+        background: #fd6a62;
+    }
+
+    .page-6 {
+        background: #f68dbb;
+    }
+
+    /* Triggers (menu and button) */
+
+    .triggers {
+        position: absolute;
+        width: 300px;
+        z-index: 999999;
+        top: 12%;
+        left: 50%;
+        margin-top: 130px;
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        transform: translateX(-50%);
+    }
+
+    .no-js .triggers {
+        display: none;
+    }
+
+    .triggers .dl-menuwrapper button,
+    .touch-button {
+        border: none;
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin: 10px 0 20px;
+        padding: 0px 20px;
+        line-height: 50px;
+        height: 50px;
+        letter-spacing: 1px;
+        width: 100%;
+        cursor: pointer;
+        display: block;
+        font-family: 'Lato', Calibri, Arial, sans-serif;
+        box-shadow: 0 3px 0 rgba(0, 0, 0, 0.1);
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    .touch-button {
+        background: #fff;
+        color: #aaa;
+    }
+
+    .triggers .dl-menuwrapper button {
+        margin-bottom: 0;
+    }
+
+    .touch-button:active {
+        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    }
+
+    .touch .triggers .dl-menuwrapper {
+        display: none;
+    }
+
+    .message {
+        display: none;
+        position: absolute;
+        z-index: 99999;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: #da475c;
+        color: #fff;
+        text-align: center;
+    }
+
+    .message p {
+        margin: 0;
+        line-height: 60px;
+        font-size: 26px;
+    }
+
+    .no-cssanimations .message {
+        display: block;
+    }
+
+    /* Animations */
+    .page-moveToLeft {
+        -webkit-animation: moveToLeft .6s ease both;
+        animation: moveToLeft .6s ease both;
+    }
+
+    .page-moveFromLeft {
+        -webkit-animation: moveFromLeft .6s ease both;
+        animation: moveFromLeft .6s ease both;
+    }
+
+    .page-moveToRight {
+        -webkit-animation: moveToRight .6s ease both;
+        animation: moveToRight .6s ease both;
+    }
+
+    .page-moveFromRight {
+        -webkit-animation: moveFromRight .6s ease both;
+        animation: moveFromRight .6s ease both;
+    }
+
+
+    @-webkit-keyframes moveToLeft {
+        from {}
+
+        to {
+            -webkit-transform: translateX(-100%);
+        }
+    }
+
+    @keyframes moveToLeft {
+        from {}
+
+        to {
+            -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+        }
+    }
+
+    @-webkit-keyframes moveFromLeft {
+        from {
+            -webkit-transform: translateX(-100%);
+        }
+    }
+
+    @keyframes moveFromLeft {
+        from {
+            -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+        }
+    }
+
+    @-webkit-keyframes moveToRight {
+        from {}
+
+        to {
+            -webkit-transform: translateX(100%);
+        }
+    }
+
+    @keyframes moveToRight {
+        from {}
+
+        to {
+            -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+        }
+    }
+
+    @-webkit-keyframes moveFromRight {
+        from {
+            -webkit-transform: translateX(100%);
+        }
+    }
+
+    @keyframes moveFromRight {
+        from {
+            -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+        }
+    }
+
+    .flex {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+
+    }
+
+    .button {
+        background-color: #4CAF50;
+        /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        display: inline-block;
+        font-size: 16px;
+    }
+
+    .section {
+        text-align: center;
+        padding-top: 25px;
+        padding-bottom: 25px;
+
+    }
+</style>
+
+<body>
+
+    <div id="main" class="perspective">
+        <div class="page page-1 page-current">
+
+            <div class="flex">
+                <h1><span>#100DaysOfCode</span>Page Transition Examples</h1>
+
+                <div class="section">
+                    <button id="btn-page-1" class="button">Go go!</button>
+
+                </div>
+
+            </div>
+
+        </div>
+        <div class="page page-2">
+
+            <div class="flex">
+                <h1><span>#100DaysOfCode</span>Page Transition Examples</h1>
+
+                <div class="section">
+                    <button id="btn-back-page-1" class="button">Back</button>
+                    <button class="button">Go go!</button>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+        <div class="page page-3">
+            <h1><span>#100DaysOfCoe</span>Page Transition Examples</h1>
+        </div>
+        <div class="page page-4">
+            <h1><span>A collection of</span><strong>Page</strong> Transitions</h1>
+        </div>
+        <div class="page page-5">
+            <h1><span>A collection of</span><strong>Page</strong> Transitions</h1>
+        </div>
+        <div class="page page-6">
+            <h1><span>A collection of</span><strong>Page</strong> Transitions</h1>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+
+            $('#btn-page-1').click(function () {
+
+                $('.page-1').addClass('page-moveToLeft')
+                $('.page-2').addClass('page-current').addClass('page-moveFromRight').addClass(
+                    'page-ontop');
+
+                setTimeout(function () {
+
+                    $('.page-1').removeClass('page-current').removeClass(
+                        'page-moveToLeft');
+                    $('.page-2').removeClass('page-moveFromRight');
+
+                }, 600);
+
+
+            });
+
+            $('#btn-back-page-1').click(function () {
+
+                $('.page-2').addClass('page-moveToRight')
+                $('.page-1').addClass('page-current').addClass('page-moveFromLeft').addClass(
+                    'page-ontop');
+
+                setTimeout(function () {
+
+                    $('.page-2').removeClass('page-current').removeClass(
+                        'page-moveToRight');
+                    $('.page-1').removeClass('page-moveFromLeft');
+
+                }, 600);
+
+
+            });
+
+
+
+        });
+    </script>
+</body>
+
+</html>
