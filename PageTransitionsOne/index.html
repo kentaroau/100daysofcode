@@ -9,6 +9,7 @@
     <!-- jquery cdn -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 
 </head>
 
@@ -25,7 +26,12 @@
     html {
         font-size: 100%;
         padding: 0;
+        height: 100%;
         margin: 0;
+        font-family: 'Roboto', Arial, Helvetica, sans-serif;
+        color: #fff;
+        background: #333;
+        overflow: hidden;
     }
 
     /* Clearfix hack by Nicolas Gallagher: http://nicolasgallagher.com/micro-clearfix-hack/ */
@@ -39,20 +45,6 @@
         clear: both;
     }
 
-    body {
-        font-family: 'Lato', Calibri, Arial, sans-serif;
-        color: #fff;
-        background: #333;
-        overflow: hidden;
-    }
-
-
-    html,
-    body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-    }
 
     .perspective {
         position: relative;
@@ -109,14 +101,12 @@
     }
 
     .page h1 span {
-        font-family: 'Satisfy', serif;
         font-weight: 400;
         font-size: 40%;
         text-transform: none;
         word-spacing: 0;
         letter-spacing: 0;
         display: block;
-        opacity: 0.4;
     }
 
     .page h1 strong {
@@ -124,110 +114,18 @@
     }
 
     .page-1 {
-        background: #0ac2d2;
+        background: #7FDBFF;
     }
 
     .page-2 {
-        background: #7bb7fa;
+        background: #FFC300;
     }
 
     .page-3 {
-        background: #60d7a9;
+        background: #B10DC9;
     }
 
-    .page-4 {
-        background: #fdc162;
-    }
 
-    .page-5 {
-        background: #fd6a62;
-    }
-
-    .page-6 {
-        background: #f68dbb;
-    }
-
-    /* Triggers (menu and button) */
-
-    .triggers {
-        position: absolute;
-        width: 300px;
-        z-index: 999999;
-        top: 12%;
-        left: 50%;
-        margin-top: 130px;
-        -webkit-transform: translateX(-50%);
-        -moz-transform: translateX(-50%);
-        -ms-transform: translateX(-50%);
-        transform: translateX(-50%);
-    }
-
-    .no-js .triggers {
-        display: none;
-    }
-
-    .triggers .dl-menuwrapper button,
-    .touch-button {
-        border: none;
-        font-size: 13px;
-        font-weight: 700;
-        text-transform: uppercase;
-        margin: 10px 0 20px;
-        padding: 0px 20px;
-        line-height: 50px;
-        height: 50px;
-        letter-spacing: 1px;
-        width: 100%;
-        cursor: pointer;
-        display: block;
-        font-family: 'Lato', Calibri, Arial, sans-serif;
-        box-shadow: 0 3px 0 rgba(0, 0, 0, 0.1);
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        -khtml-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-    }
-
-    .touch-button {
-        background: #fff;
-        color: #aaa;
-    }
-
-    .triggers .dl-menuwrapper button {
-        margin-bottom: 0;
-    }
-
-    .touch-button:active {
-        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-    }
-
-    .touch .triggers .dl-menuwrapper {
-        display: none;
-    }
-
-    .message {
-        display: none;
-        position: absolute;
-        z-index: 99999;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background: #da475c;
-        color: #fff;
-        text-align: center;
-    }
-
-    .message p {
-        margin: 0;
-        line-height: 60px;
-        font-size: 26px;
-    }
-
-    .no-cssanimations .message {
-        display: block;
-    }
 
     /* Animations */
     .page-moveToLeft {
@@ -249,7 +147,6 @@
         -webkit-animation: moveFromRight .6s ease both;
         animation: moveFromRight .6s ease both;
     }
-
 
     @-webkit-keyframes moveToLeft {
         from {}
@@ -311,6 +208,56 @@
         }
     }
 
+    /* room walls */
+    .pt-page-rotateRoomLeftOut {
+        -webkit-transform-origin: 100% 50%;
+        transform-origin: 100% 50%;
+        -webkit-animation: rotateRoomLeftOut .8s both ease;
+        animation: rotateRoomLeftOut .8s both ease;
+    }
+
+    .pt-page-rotateRoomLeftIn {
+        -webkit-transform-origin: 0% 50%;
+        transform-origin: 0% 50%;
+        -webkit-animation: rotateRoomLeftIn .8s both ease;
+        animation: rotateRoomLeftIn .8s both ease;
+    }
+
+    @-webkit-keyframes rotateRoomLeftOut {
+        from {}
+
+        to {
+            opacity: .3;
+            -webkit-transform: translateX(-100%) rotateY(90deg);
+        }
+    }
+
+    @keyframes rotateRoomLeftOut {
+        from {}
+
+        to {
+            opacity: .3;
+            -webkit-transform: translateX(-100%) rotateY(90deg);
+            transform: translateX(-100%) rotateY(90deg);
+        }
+    }
+
+    @-webkit-keyframes rotateRoomLeftIn {
+        from {
+            opacity: .3;
+            -webkit-transform: translateX(100%) rotateY(-90deg);
+        }
+    }
+
+    @keyframes rotateRoomLeftIn {
+        from {
+            opacity: .3;
+            -webkit-transform: translateX(100%) rotateY(-90deg);
+            transform: translateX(100%) rotateY(-90deg);
+        }
+    }
+
+
     .flex {
         display: flex;
         justify-content: center;
@@ -319,14 +266,14 @@
     }
 
     .button {
-        background-color: #4CAF50;
+        background-color: white;
         /* Green */
-        border: none;
-        color: white;
+        border: 4px solid #666A6D;
         padding: 15px 32px;
         text-align: center;
         display: inline-block;
         font-size: 16px;
+        cursor: pointer;
     }
 
     .section {
@@ -335,6 +282,184 @@
         padding-bottom: 25px;
 
     }
+
+    .p-50 {
+        padding-top: 50px;
+        padding-bottom: 30px;
+    }
+
+
+
+    /* Smoke container */
+    #smoke {
+        position: absolute;
+        z-index: 3;
+        width: 1px;
+        height: 160px;
+        left: 54%;
+        padding-top: 30px;
+
+    }
+
+    /* smoke balls */
+    #smoke span {
+        display: block;
+        position: absolute;
+        left: 54%;
+        margin-left: -20px;
+        height: 0px;
+        width: 0px;
+        border: 35px solid white;
+        border-radius: 35px;
+        left: -14px;
+        opacity: 0;
+        transform: scale(0.2);
+    }
+
+    /* Smoke animation */
+    @keyframes smokeL {
+        0% {
+            transform: scale(0.2) translate(0, 0);
+        }
+
+        10% {
+            opacity: 1;
+            transform: scale(0.2) translate(0, -5px);
+        }
+
+        100% {
+            opacity: 0;
+            transform: scale(1) translate(-20px, -130px);
+        }
+    }
+
+    @keyframes smokeR {
+        0% {
+            transform: scale(0.2) translate(0, 0);
+        }
+
+        10% {
+            opacity: 1;
+            transform: scale(0.2) translate(0, -5px);
+        }
+
+        100% {
+            opacity: 0;
+            transform: scale(1) translate(20px, -130px);
+        }
+    }
+
+    #smoke .s0 {
+        animation: smokeL 10s 0s infinite;
+    }
+
+    #smoke .s1 {
+        animation: smokeR 10s 1s infinite;
+    }
+
+    #smoke .s2 {
+        animation: smokeL 10s 2s infinite;
+    }
+
+    #smoke .s3 {
+        animation: smokeR 10s 3s infinite;
+    }
+
+    #smoke .s4 {
+        animation: smokeL 10s 4s infinite;
+    }
+
+    #smoke .s5 {
+        animation: smokeR 10s 5s infinite;
+    }
+
+    #smoke .s6 {
+        animation: smokeL 10s 6s infinite;
+    }
+
+    #smoke .s7 {
+        animation: smokeR 10s 7s infinite;
+    }
+
+    #smoke .s8 {
+        animation: smokeL 10s 8s infinite;
+    }
+
+    #smoke .s9 {
+        animation: smokeR 10s 9s infinite;
+    }
+
+    .shake-animate:hover {
+        /* Start the shake animation and make the animation last for 0.5 seconds */
+        animation: shake 0.5s;
+
+        /* When the animation is finished, start again */
+        animation-iteration-count: infinite;
+    }
+
+    @keyframes shake {
+        0% {
+            transform: translate(1px, 1px) rotate(0deg);
+        }
+
+        10% {
+            transform: translate(-1px, -2px) rotate(-1deg);
+        }
+
+        20% {
+            transform: translate(-3px, 0px) rotate(1deg);
+        }
+
+        30% {
+            transform: translate(3px, 2px) rotate(0deg);
+        }
+
+        40% {
+            transform: translate(1px, -1px) rotate(1deg);
+        }
+
+        50% {
+            transform: translate(-1px, 2px) rotate(-1deg);
+        }
+
+        60% {
+            transform: translate(-3px, 1px) rotate(0deg);
+        }
+
+        70% {
+            transform: translate(3px, 1px) rotate(-1deg);
+        }
+
+        80% {
+            transform: translate(-1px, -1px) rotate(1deg);
+        }
+
+        90% {
+            transform: translate(1px, 2px) rotate(0deg);
+        }
+
+        100% {
+            transform: translate(1px, -2px) rotate(-1deg);
+        }
+    }
+
+    .animate-updown {
+			animation: MoveUpDown 1.5s linear infinite;
+		}
+
+		@keyframes MoveUpDown {
+
+			0%,
+			100% {
+				transform: translateY(10px);
+				/*likely future standard*/
+			}
+
+			50% {
+				transform: translateY(-10px);
+				/*likely future standard*/
+			}
+		}
 </style>
 
 <body>
@@ -342,44 +467,59 @@
     <div id="main" class="perspective">
         <div class="page page-1 page-current">
 
-            <div class="flex">
-                <h1><span>#100DaysOfCode</span>Page Transition Examples</h1>
+            <div class="flex header">
+                <h1><span class="p-50">#100DaysOfCode</span>Page Transition Examples</h1>
 
                 <div class="section">
                     <button id="btn-page-1" class="button">Go go!</button>
 
                 </div>
 
+                <div class="section">
+                    <div id="smoke">
+                        <span class="s0"></span>
+                        <span class="s1"></span>
+                        <span class="s2"></span>
+                        <span class="s3"></span>
+                        <span class="s4"></span>
+                        <span class="s5"></span>
+                        <span class="s6"></span>
+                        <span class="s7"></span>
+                        <span class="s8"></span>
+                        <span class="s9"></span>
+                    </div>
+
+
+                </div>
+                <div class="section">
+                    <img src="charmander.png" width="200" />
+                </div>
             </div>
 
         </div>
         <div class="page page-2">
 
             <div class="flex">
-                <h1><span>#100DaysOfCode</span>Page Transition Examples</h1>
+                <h1><span class="p-50">#100DaysOfCode</span>Page Transition Examples</h1>
 
                 <div class="section">
                     <button id="btn-back-page-1" class="button">Back</button>
-                    <button class="button">Go go!</button>
+                    <button id="btn-next-page-2" class="button">Go go!</button>
 
                 </div>
-
-
+                <div class="section shake-animate">
+                    <img src="cat-banana.png" width="200" />
+                </div>
             </div>
-
-
         </div>
         <div class="page page-3">
-            <h1><span>#100DaysOfCoe</span>Page Transition Examples</h1>
-        </div>
-        <div class="page page-4">
-            <h1><span>A collection of</span><strong>Page</strong> Transitions</h1>
-        </div>
-        <div class="page page-5">
-            <h1><span>A collection of</span><strong>Page</strong> Transitions</h1>
-        </div>
-        <div class="page page-6">
-            <h1><span>A collection of</span><strong>Page</strong> Transitions</h1>
+            <div class="flex">
+                <h1><span class="p-50">#100DaysOfCode</span>Page Transition Examples</h1>
+
+                <div class="section animate-updown">
+                    <img src="cat-fly.png" width="200" />
+                </div>
+            </div>
         </div>
     </div>
     <script>
@@ -415,6 +555,16 @@
                     $('.page-1').removeClass('page-moveFromLeft');
 
                 }, 600);
+
+
+            });
+
+            $('#btn-next-page-2').click(function () {
+
+                $('.page-2').addClass('pt-page-rotateRoomLeftOut')
+                $('.page-3').addClass('page-current').addClass('pt-page-rotateRoomLeftIn').addClass(
+                    'page-ontop');
+
 
 
             });

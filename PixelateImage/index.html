@@ -1,17 +1,175 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>100 Days of Code - Pixelate demo</title>
+    <!-- bootstrap css cdn -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- bootstrap js cdn -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+    <!-- jquery cdn -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <style type="text/css">
+        canvas {
+            image-rendering: optimizeSpeed;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: -o-crisp-edges;
+            image-rendering: crisp-edges;
+            -ms-interpolation-mode: nearest-neighbor;
+            border-radius: 8px;
+            -webkit-box-shadow: 0px 0px 15px 2px rgba(156,156,156,1);
+-moz-box-shadow: 0px 0px 15px 2px rgba(156,156,156,1);
+box-shadow: 0px 0px 15px 2px rgba(156,156,156,1);
+
+        }
+
+        body {
+            background-color: #fefbd8;
+            margin-top: 150px
+        }
+    </style>
 </head>
-<body>
-    
+
+<body class="">
+
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+
+                <h2>#100DaysOfCode - Pixel Galery</h2>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col" style="padding-top:200px;">
+
+                <img src="img/prev.svg" style="fill: darkslategray;" />
+            </div>
+
+            <div class="col">
+                <canvas id="canvas" width="960" height="540"></canvas>
+
+            </div>
+            <div class="col" style="padding-top:200px;">
+
+                <img id="btnNext" src="img/next.svg" style="fill: darkslategray;" />
+            </div>
+        </div>
+
+
+    </div>
+    <script>
+        var ctx = canvas.getContext('2d'),
+            img = new Image();
+
+        var pixelIndex = 100;
+        // turn off image smoothing - this will give the pixelated effect
+        ctx.mozImageSmoothingEnabled = false;
+        ctx.webkitImageSmoothingEnabled = false;
+        ctx.imageSmoothingEnabled = false;
+
+        // wait until image is actually available
+        img.onload = pixelate;
+
+        // some image, we are not struck with CORS restrictions as we
+        // do not use pixel buffer to pixelate, so any image will do
+        var imgSrcs = ['img/3.jpg',
+            'img/2.jpg',
+            'img/1.jpg'
+        ]
+        img.src = imgSrcs[0];
+
+        // MAIN function
+        function pixelate(v) {
+
+            // if in play mode use that value, else use slider value
+            var size = pixelIndex * 0.01,
+                // cache scaled width and height
+                w = canvas.width * size,
+                h = canvas.height * size;
+
+            // draw original image to the scaled size
+            ctx.drawImage(img, 0, 0, w, h);
+
+            // then draw that scaled image thumb back to fill canvas
+            // As smoothing is off the result will be pixelated
+            ctx.drawImage(canvas, 0, 0, w, h, 0, 0, canvas.width, canvas.height);
+        }
+
+        function myLoop(callback, speed, isReverse) {
+            setTimeout(function () {
+                pixelate();
+                if (isReverse) {
+                    pixelIndex++;
+                } else {
+                    pixelIndex--;
+                }
+
+                if (isReverse) {
+                    if (pixelIndex < 100) {
+
+                        myLoop(callback, speed, isReverse);
+
+                    } else {
+                        callback();
+
+                    }
+
+                } else {
+                    if (pixelIndex > 0) {
+                        if (pixelIndex < 20) {
+                            myLoop(callback, 100, isReverse);
+                        } else {
+                            myLoop(callback, speed, isReverse);
+                        }
+                    } else {
+                        callback();
+
+                    }
+
+                }
+
+            }, speed)
+        }
+        var imageIndex = 0;
+
+        $('#btnNext').click(function () {
+
+            myLoop(() => {
+                imageIndex++;
+                img.src = imgSrcs[imageIndex];
+                pixelIndex = 100;
+                pixelate();
+            }, 10, false);
+
+        });
+        $('#btnBack').click(function () {
+
+            myLoop(() => {
+                imageIndex--;
+                img.src = imgSrcs[imageIndex];
+                pixelIndex = 1;
+                pixelate();
+            }, 10, true);
+
+        });
+    </script>
 </body>
 
-<script>
-
-
-</script>
 </html>
