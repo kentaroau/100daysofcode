@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- jquery cdn -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+    <style>
+        :root {
+            --purple: #6e1f58;
+            --green: #65f283;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #1dd2af;
+            background: linear-gradient(10deg, #E03BE7, #F04151);
+            padding: 0;
+            margin: 0;
+            width: 100%;
+
+
+        }
+
+
+        h1 {
+            color: #fff;
+            font-family: mallory, futura, arial black, sans-serif;
+            font-size: 7em;
+            font-weight: 800;
+            letter-spacing: -0.1em;
+            padding: 0 0.25em;
+
+        }
+
+
+
+        html {
+            background: #222;
+            height: 100%;
+        }
+
+
+        svg {
+            display: block;
+            margin: auto;
+        }
+
+        .gradient-path {
+            /* No fill so we're just enjoying the stroke */
+            fill: none;
+            stroke-width: 2;
+            /* Make the stroke a bit wider so we can see it better */
+            stroke-linecap: round;
+            /* Make the stroke edges nice & round */
+            stroke-linejoin: round;
+            /* Smooth out corners */
+
+            --total-offset: 0;
+            /* CSS var that will be populated by the JS for the CSS animation */
+            animation: stroke-anim 6s linear infinite;
+        }
+
+        /* Go from the current `stroke-dashoffset` (set in the JS), to the total offset (provided by the JS in the CSS var */
+        @keyframes stroke-anim {
+            to {
+                stroke-dashoffset: var(--total-offset);
+            }
+        }
+
+        main {
+            display: flex;
+            border-radius: 15px;
+            background-color: white;
+            width: 80%;
+            justify-content: center;
+            flex-direction: column;
+            margin: auto;
+            margin-top: 50px;
+            margin-bottom: 50px
+        }
+
+        .col {
+            text-align: center;
+        }
+
+        .text-example1 {
+            text-shadow:
+                0.1vw 0.1vw #4F4F4F55,
+                0.1vw -0.1vw #4F4F4F55,
+                -0.1vw 0.1vw #4F4F4F55,
+                -0.1vw -0.1vw #4F4F4F55;
+            background: linear-gradient(160deg, #89043D 0%, #2FE6DE 50%, #18F2B2 90%);
+            -webkit-background-clip: text;
+            -webkit-text-stroke: 1vw transparent;
+
+        }
+
+        .text-example2 {
+            color:#4040a1;
+            text-shadow: 0.3rem -0.3rem rgba(255, 0, 234, 0.692), -0.25rem -0.25rem rgba(0, 255, 255, 0.75), 0 0.5rem rgba(255, 255, 0, 0.75);
+
+        }
+        
+        .kodama {
+            background-image: url(kodama.png);
+            background-repeat: no-repeat;
+            background-size: 20vw;
+        }
+
+        .rabbit {
+            background-image: url(rabit.png);
+            background-repeat: no-repeat;
+            background-size: 20vw;
+            background-position-x: 65vw;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <main>
+        <div class="col rabbit">
+            <h1 class="text-example1 animated">#100DaysOfCode</h1>
+
+        </div>
+        <div class="col kodama ">
+            <h1 class="text-example2 animated">Happy</h1>
+            <h1 class="text-example2 animated">Women's</h1>
+            <h1 class="text-example2 animated">Day</h1>
+
+
+        </div>
+        <div class="col">
+            <svg width="1000" height="500" viewBox="10 -10 200 120" xmlns="http://www.w3.org/2000/svg">
+
+                <path class="gradient-path"
+                    d="M 49.171 62.599 L 49.171 72.071 L 1.368 72.071 L 1.368 63.917 L 25.049 38.087 A 101.185 101.185 0 0 0 27.932 34.74 Q 30.847 31.191 32.349 28.541 A 17.363 17.363 0 0 0 33.979 24.702 A 14.106 14.106 0 0 0 34.522 20.851 Q 34.522 15.773 31.666 12.648 Q 28.809 9.523 23.975 9.523 A 15.167 15.167 0 0 0 20.32 9.938 A 10.256 10.256 0 0 0 15.04 13.038 A 11.751 11.751 0 0 0 12.431 17.968 Q 11.954 19.752 11.88 21.864 A 22.516 22.516 0 0 0 11.866 22.657 L 0.001 22.657 A 24.519 24.519 0 0 1 1.14 15.09 A 22.002 22.002 0 0 1 2.955 10.963 A 20.342 20.342 0 0 1 11.402 2.882 Q 16.895 0.001 24.073 0.001 Q 34.424 0.001 40.406 5.201 A 17.039 17.039 0 0 1 46.121 15.886 A 24.7 24.7 0 0 1 46.387 19.581 A 21.279 21.279 0 0 1 45.437 25.731 A 29.646 29.646 0 0 1 43.384 30.738 A 41.457 41.457 0 0 1 40.731 35.137 Q 39.328 37.189 37.532 39.403 A 97.099 97.099 0 0 1 33.546 43.995 L 16.163 62.599 L 49.171 62.599 Z M 162.842 62.599 L 162.842 72.071 L 115.04 72.071 L 115.04 63.917 L 138.721 38.087 A 101.185 101.185 0 0 0 141.604 34.74 Q 144.519 31.191 146.021 28.541 A 17.363 17.363 0 0 0 147.651 24.702 A 14.106 14.106 0 0 0 148.194 20.851 Q 148.194 15.773 145.338 12.648 Q 142.481 9.523 137.647 9.523 A 15.167 15.167 0 0 0 133.992 9.938 A 10.256 10.256 0 0 0 128.712 13.038 A 11.751 11.751 0 0 0 126.103 17.968 Q 125.626 19.752 125.552 21.864 A 22.516 22.516 0 0 0 125.538 22.657 L 113.673 22.657 A 24.519 24.519 0 0 1 114.812 15.09 A 22.002 22.002 0 0 1 116.627 10.963 A 20.342 20.342 0 0 1 125.074 2.882 Q 130.567 0.001 137.745 0.001 Q 148.096 0.001 154.078 5.201 A 17.039 17.039 0 0 1 159.793 15.886 A 24.7 24.7 0 0 1 160.059 19.581 A 21.279 21.279 0 0 1 159.109 25.731 A 29.646 29.646 0 0 1 157.056 30.738 A 41.457 41.457 0 0 1 154.403 35.137 Q 153 37.189 151.203 39.403 A 97.099 97.099 0 0 1 147.217 43.995 L 129.835 62.599 L 162.842 62.599 Z M 104.542 29.835 L 104.542 42.14 Q 104.542 57.472 98.804 65.26 A 18.506 18.506 0 0 1 87.152 72.499 A 28.999 28.999 0 0 1 81.348 73.048 A 27.788 27.788 0 0 1 74.398 72.231 A 18.579 18.579 0 0 1 63.99 65.455 Q 59.735 59.919 58.505 50.501 A 63.063 63.063 0 0 1 58.008 42.97 L 58.008 30.665 A 66.138 66.138 0 0 1 58.462 22.647 Q 59.581 13.51 63.459 8.059 A 20.179 20.179 0 0 1 63.746 7.667 A 18.449 18.449 0 0 1 74.951 0.642 A 29.177 29.177 0 0 1 81.251 0.001 A 28.852 28.852 0 0 1 88.118 0.768 A 18.342 18.342 0 0 1 98.658 7.472 Q 102.755 12.807 104.001 21.929 A 63.169 63.169 0 0 1 104.542 29.835 Z M 218.214 29.835 L 218.214 42.14 Q 218.214 57.472 212.476 65.26 A 18.506 18.506 0 0 1 200.824 72.499 A 28.999 28.999 0 0 1 195.02 73.048 A 27.788 27.788 0 0 1 188.07 72.231 A 18.579 18.579 0 0 1 177.662 65.455 Q 173.407 59.919 172.177 50.501 A 63.063 63.063 0 0 1 171.68 42.97 L 171.68 30.665 A 66.138 66.138 0 0 1 172.134 22.647 Q 173.253 13.51 177.131 8.059 A 20.179 20.179 0 0 1 177.418 7.667 A 18.449 18.449 0 0 1 188.623 0.642 A 29.177 29.177 0 0 1 194.923 0.001 A 28.852 28.852 0 0 1 201.79 0.768 A 18.342 18.342 0 0 1 212.33 7.472 Q 216.427 12.807 217.673 21.929 A 63.169 63.169 0 0 1 218.214 29.835 Z M 92.676 44.923 L 92.676 28.859 A 58.457 58.457 0 0 0 92.472 23.784 Q 91.929 17.574 89.942 14.186 Q 87.208 9.523 81.251 9.523 A 12.01 12.01 0 0 0 77.769 9.998 A 8.787 8.787 0 0 0 72.706 13.942 Q 70.23 17.943 69.876 26.008 A 61.205 61.205 0 0 0 69.825 27.736 L 69.825 43.849 A 57.14 57.14 0 0 0 70.045 49.05 Q 70.608 55.183 72.608 58.693 Q 75.391 63.575 81.348 63.575 A 11.335 11.335 0 0 0 84.915 63.045 A 8.828 8.828 0 0 0 89.796 59.059 A 15.424 15.424 0 0 0 91.297 55.594 Q 92.392 52.028 92.623 46.759 A 64.224 64.224 0 0 0 92.676 44.923 Z M 206.348 44.923 L 206.348 28.859 A 58.457 58.457 0 0 0 206.144 23.784 Q 205.601 17.574 203.614 14.186 Q 200.88 9.523 194.923 9.523 A 12.01 12.01 0 0 0 191.441 9.998 A 8.787 8.787 0 0 0 186.378 13.942 Q 183.902 17.943 183.548 26.008 A 61.205 61.205 0 0 0 183.497 27.736 L 183.497 43.849 A 57.14 57.14 0 0 0 183.717 49.05 Q 184.28 55.183 186.28 58.693 Q 189.063 63.575 195.02 63.575 A 11.335 11.335 0 0 0 198.587 63.045 A 8.828 8.828 0 0 0 203.467 59.059 A 15.424 15.424 0 0 0 204.968 55.594 Q 206.064 52.028 206.295 46.759 A 64.224 64.224 0 0 0 206.348 44.923 Z" />
+                </svg>
+        </div>
+
+
+
+    </main>
+
+</body>
+<script>
+    // How many copies of the path to make (more = smoother gradient, but more clones of the path)
+    var resolution = 14;
+
+    // Using Array.from to...
+    var gradientPaths = Array.from(
+
+        // ...find all .gradient-path elements...
+        document.querySelectorAll('.gradient-path'),
+
+        // ...and run this function over them:
+        function (path) {
+
+            // Get the length of the path
+            var length = path.getTotalLength();
+
+            // How big each segment of the gradient should be
+            var segmentLength = length / resolution;
+
+            // Create a group for all of the new paths to reside in
+            var g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+            path.parentNode.insertBefore(g, path.nextSibling);
+
+            // Apply some styles for all the cloned paths on the <g> to be inherited
+            g.style.strokeDasharray = segmentLength + ' ' + (length - segmentLength);
+
+            for (var i = 0; i < resolution; i++) {
+                //if (window.CP.shouldStopExecution(0)) break;
+                // Clone the path
+                var c = path.cloneNode();
+
+                // Give it a nice color spanning the entire spectrum
+                c.style.stroke = 'hsl(' + i / resolution * 360 + ', 75%, 60%)';
+
+                // How much the stroke-dash should be offset (`stroke-dashoffset`)
+                var offset = length * (i / resolution);
+                c.style.strokeDashoffset = offset;
+
+                // Pass along the necessary offset for the CSS animation as a CSS var
+                c.style.setProperty('--total-offset', length + offset);
+
+                // Add the cloned path to the group
+                g.appendChild(c);
+            }
+
+            return path;
+
+        });
+
+        $('.text-example2').click(function(){
+            $(this).toggleClass('jello');
+
+        })
+        $('.text-example1').click(function(){
+            $(this).toggleClass('swing');
+
+        })
+
+</script>
+
+</html>
