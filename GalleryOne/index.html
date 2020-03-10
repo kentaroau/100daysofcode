@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Gallery Demo One</title>
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.3.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/demo.css" />
+	<link rel="stylesheet" type="text/css" href="css/style3.css" />
+	<script src="js/modernizr-custom.js"></script>
+	<style>
+		:root {
+			--blue-bubble: #bbe6f3;
+			--small-b-bubble: #bae5f2;
+			--pink-bubble: #ebc7e5;
+			--font-color: #063064;
+		}
+
+		html,
+		body {
+			width: 100%;
+			height: 100%;
+		}
+
+		body {
+			background-color: #f1f1f1;
+		}
+
+		.content {
+			background-color: #f3fcfd;
+			border-radius: 6px;
+			-webkit-box-shadow: 1px 2px 29px 2px #dcf4fa;
+			-moz-box-shadow: 1px 2px 29px 2px #dcf4fa;
+			box-shadow: 1px 2px 29px 2px #dcf4fa;
+
+		}
+
+		.bubble {
+			position: absolute;
+			border-radius: 50%;
+		}
+
+		.pink-bubble {
+			width: 460px;
+			height: 460px;
+			right: -160px;
+			top: -110px;
+			background-color: var(--pink-bubble);
+			z-index: -1;
+		}
+
+		.blue-bubble {
+			width: 520px;
+			height: 520px;
+			left: -30px;
+			top: 345px;
+			background-color: var(--blue-bubble);
+			z-index: -1;
+
+		}
+		.small-b-bubble {
+  width: 50px;
+  height: 50px;
+  right: 40px;
+  bottom: 85px;
+  background-color: var(--small-b-bubble);
+  z-index: -1;
+
+}
+		/*GrayScale*/
+		.grayscale img {
+			-webkit-filter: grayscale(100%);
+			filter: grayscale(100%);
+			-webkit-transition: .3s ease-in-out;
+			transition: .3s ease-in-out;
+		}
+
+		.grayscale:hover img {
+			-webkit-filter: grayscale(0);
+			filter: grayscale(0);
+		}
+	</style>
+</head>
+
+<body class="demo-3">
+	<div class="container">
+		<header class="codrops-header">
+
+			<h1>
+				<div style="color: coral;">😸 Image Gallery Example </div><span>#100DaysOfCode</span>
+			</h1>
+
+		</header>
+		<div class="bubble pink-bubble"></div>
+		<div class="bubble blue-bubble"></div>
+		<div class="bubble small-b-bubble"></div>
+
+		<div class="content">
+			<div class="grid">
+				<div class="grid__item" data-size="1280x853">
+					<a href="img/original/1.jpg" class="img-wrap grayscale"><img src="img/thumbs/1.jpg" alt="img01" />
+						<div class="description description--grid">
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>sed do eiusmod tempor
+							incididunt ut labore et dolore magna aliqua</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="958x1280">
+					<a href="img/original/2.jpg" class="img-wrap grayscale"><img src="img/thumbs/2.jpg" alt="img02" />
+						<div class="description description--grid">
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>sed do eiusmod tempor
+							incididunt ut labore et dolore magna aliqua</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="837x1280">
+					<a href="img/original/3.png" class="img-wrap grayscale"><img src="img/thumbs/3.png" alt="img03" />
+						<div class="description description--grid">
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>sed do eiusmod tempor
+							incididunt ut labore et dolore magna aliqua</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="1280x961">
+					<a href="img/original/4.jpg" class="img-wrap "><img src="img/thumbs/4.jpg" alt="img04" />
+						<div class="description description--grid">
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>sed do eiusmod tempor
+							incididunt ut labore et dolore magna aliqua</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="1280x1131">
+					<a href="img/original/5.png" class="img-wrap "><img src="img/thumbs/5.png" alt="img05" />
+						<div class="description description--grid">
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>sed do eiusmod tempor
+							incididunt ut labore et dolore magna aliqua</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="1280x857">
+					<a href="img/original/6.jpg" class="img-wrap grayscale"><img src="img/thumbs/6.jpg" alt="img06" />
+						<div class="description description--grid">
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>sed do eiusmod tempor
+							incididunt ut labore et dolore magna aliqua</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="1280x1280">
+					<a href="img/original/7.png" class="img-wrap "><img src="img/thumbs/7.png" alt="img07" />
+						<div class="description description--grid">
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>sed do eiusmod tempor
+							incididunt ut labore et dolore magna aliqua</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="1280x853">
+					<a href="img/original/8.jpg" class="img-wrap "><img src="img/thumbs/8.jpg" alt="img08" />
+						<div class="description description--grid">
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>sed do eiusmod tempor
+							incididunt ut labore et dolore magna aliqua</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="865x1280">
+					<a href="img/original/9.jpg" class="img-wrap grayscale"><img src="img/thumbs/9.jpg" alt="img09" />
+						<div class="description description--grid">
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>sed do eiusmod tempor
+							incididunt ut labore et dolore magna aliqua</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="1280x1280">
+					<a href="img/original/10.jpg" class="img-wrap grayscale"><img src="img/thumbs/10.jpg" alt="img10" />
+						<div class="description description--grid">
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>sed do eiusmod tempor
+							incididunt ut labore et dolore magna aliqua</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="1280x850">
+					<a href="img/original/11.jpg" class="img-wrap "><img src="img/thumbs/11.jpg" alt="img11" />
+						<div class="description description--grid">
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>sed do eiusmod tempor
+							incididunt ut labore et dolore magna aliqua</div>
+					</a>
+				</div>
+
+
+				<div class="grid__item" data-size="1280x853">
+					<a href="img/original/1.jpg" class="img-wrap grayscale"><img src="img/thumbs/1.jpg" alt="img01" />
+						<div class="description description--grid">
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>sed do eiusmod tempor
+							incididunt ut labore et dolore magna aliqua</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="958x1280">
+					<a href="img/original/2.jpg" class="img-wrap "><img src="img/thumbs/2.jpg" alt="img02" />
+						<div class="description description--grid">
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>sed do eiusmod tempor
+							incididunt ut labore et dolore magna aliqua</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="837x1280">
+					<a href="img/original/3.png" class="img-wrap grayscale"><img src="img/thumbs/3.png" alt="img03" />
+						<div class="description description--grid">
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>sed do eiusmod tempor
+							incididunt ut labore et dolore magna aliqua</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="1280x961">
+					<a href="img/original/4.jpg" class="img-wrap "><img src="img/thumbs/4.jpg" alt="img04" />
+						<div class="description description--grid">
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>sed do eiusmod tempor
+							incididunt ut labore et dolore magna aliqua</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="1280x1131">
+					<a href="img/original/5.png" class="img-wrap grayscale"><img src="img/thumbs/5.png" alt="img05" />
+						<div class="description description--grid">
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>sed do eiusmod tempor
+							incididunt ut labore et dolore magna aliqua</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="1280x857">
+					<a href="img/original/6.jpg" class="img-wrap grayscale"><img src="img/thumbs/6.jpg" alt="img06" />
+						<div class="description description--grid">
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>sed do eiusmod tempor
+							incididunt ut labore et dolore magna aliqua</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="1280x1280">
+					<a href="img/original/7.png" class="img-wrap "><img src="img/thumbs/7.png" alt="img07" />
+						<div class="description description--grid">
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>sed do eiusmod tempor
+							incididunt ut labore et dolore magna aliqua</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="1280x853">
+					<a href="img/original/8.jpg" class="img-wrap grayscale"><img src="img/thumbs/8.jpg" alt="img08" />
+						<div class="description description--grid">
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>sed do eiusmod tempor
+							incididunt ut labore et dolore magna aliqua</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="865x1280">
+					<a href="img/original/9.jpg" class="img-wrap "><img src="img/thumbs/9.jpg" alt="img09" />
+						<div class="description description--grid">
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>sed do eiusmod tempor
+							incididunt ut labore et dolore magna aliqua</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="1280x1280">
+					<a href="img/original/10.jpg" class="img-wrap "><img src="img/thumbs/10.jpg" alt="img10" />
+						<div class="description description--grid">
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>sed do eiusmod tempor
+							incididunt ut labore et dolore magna aliqua</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="1280x850">
+					<a href="img/original/11.jpg" class="img-wrap "><img src="img/thumbs/11.jpg" alt="img11" />
+						<div class="description description--grid">
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>sed do eiusmod tempor
+							incididunt ut labore et dolore magna aliqua</div>
+					</a>
+				</div>
+
+			</div>
+			<!-- /grid -->
+			<div class="preview">
+				<button class="action action--close"><i class="fa fa-times"></i><span
+						class="text-hidden">Close</span></button>
+				<div class="description description--preview"></div>
+			</div>
+			<!-- /preview -->
+		</div>
+		<!-- /content -->
+
+	</div>
+	<!-- /container -->
+	<script src="js/imagesloaded.pkgd.min.js"></script>
+	<script src="js/masonry.pkgd.min.js"></script>
+	<script src="js/classie.js"></script>
+	<script src="js/main.js"></script>
+	<script>
+		(function () {
+			var support = {
+					transitions: Modernizr.csstransitions
+				},
+				// transition end event name
+				transEndEventNames = {
+					'WebkitTransition': 'webkitTransitionEnd',
+					'MozTransition': 'transitionend',
+					'OTransition': 'oTransitionEnd',
+					'msTransition': 'MSTransitionEnd',
+					'transition': 'transitionend'
+				},
+				transEndEventName = transEndEventNames[Modernizr.prefixed('transition')],
+				onEndTransition = function (el, callback) {
+					var onEndCallbackFn = function (ev) {
+						if (support.transitions) {
+							if (ev.target != this) return;
+							this.removeEventListener(transEndEventName, onEndCallbackFn);
+						}
+						if (callback && typeof callback === 'function') {
+							callback.call(this);
+						}
+					};
+					if (support.transitions) {
+						el.addEventListener(transEndEventName, onEndCallbackFn);
+					} else {
+						onEndCallbackFn();
+					}
+				};
+
+			new GridFx(document.querySelector('.grid'), {
+				imgPosition: {
+					x: 1,
+					y: 0.75
+				},
+				pagemargin: 50,
+				onOpenItem: function (instance, item) {
+					instance.items.forEach(function (el) {
+						if (item != el) {
+							var delay = Math.floor(Math.random() * 150);
+							el.style.WebkitTransition = 'opacity .4s ' + delay +
+								'ms cubic-bezier(.7,0,.3,1), -webkit-transform .4s ' + delay +
+								'ms cubic-bezier(.7,0,.3,1)';
+							el.style.transition = 'opacity .4s ' + delay +
+								'ms cubic-bezier(.7,0,.3,1), transform .4s ' + delay +
+								'ms cubic-bezier(.7,0,.3,1)';
+
+							el.style.WebkitTransform = 'translate3d(0,400px,0)';
+							el.style.transform = 'translate3d(0,400px,0)';
+							el.style.opacity = 0;
+						}
+					});
+				},
+				onCloseItem: function (instance, item) {
+					instance.items.forEach(function (el) {
+						if (item != el) {
+							el.style.WebkitTransition = 'opacity .3s, -webkit-transform .3s';
+							el.style.transition = 'opacity .3s, transform .3s';
+
+							el.style.WebkitTransform = 'translate3d(0,0,0)';
+							el.style.transform = 'translate3d(0,0,0)';
+							el.style.opacity = 1;
+
+							onEndTransition(el, function () {
+								el.style.transition = 'none';
+								el.style.WebkitTransform = 'none';
+							});
+						}
+					});
+				}
+			});
+		})();
+	</script>
+</body>
+
+</html>
