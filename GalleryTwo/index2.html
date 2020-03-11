@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Another Gallery Example</title>
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="css/demo.css" />
+	<link rel="stylesheet" type="text/css" href="css/component.css" />
+	<script src="js/modernizr.custom.js"></script>
+</head>
+
+<body class="demo-2">
+	<main>
+		<header class="codrops-header">
+			<h1>Another gallery</h1>
+			<p>#100DaysOfCode<p>
+
+
+		</header>
+		<section class="section">
+			<div class="isolayer isolayer--deco1 isolayer--shadow">
+				<ul class="grid">
+					<li class="grid__item" data-size="1280x850">
+						<a class="grid__link" href="#">
+							<div class="layer"></div>
+							<div class="layer"></div>
+							<div class="layer"></div><img class="grid__img layer" src="img/1.jpg" alt="01" />
+						</a>
+					</li>
+					<li class="grid__item" data-size="1280x850">
+						<a class="grid__link" href="#">
+							<div class="layer"></div>
+							<div class="layer"></div>
+							<div class="layer"></div><img class="grid__img layer" src="img/2.jpg" alt="02" />
+						</a>
+					</li>
+					<li class="grid__item" data-size="1280x850">
+						<a class="grid__link" href="#">
+							<div class="layer"></div>
+							<div class="layer"></div>
+							<div class="layer"></div><img class="grid__img layer" src="img/3.png" alt="03" />
+						</a>
+					</li>
+					<li class="grid__item" data-size="1280x850">
+						<a class="grid__link" href="#">
+							<div class="layer"></div>
+							<div class="layer"></div>
+							<div class="layer"></div><img class="grid__img layer" src="img/4.jpg" alt="04" />
+						</a>
+					</li>
+					<li class="grid__item" data-size="1280x850">
+						<a class="grid__link" href="#">
+							<div class="layer"></div>
+							<div class="layer"></div>
+							<div class="layer"></div><img class="grid__img layer" src="img/5.png" alt="05" />
+						</a>
+					</li>
+					<li class="grid__item" data-size="1280x850">
+						<a class="grid__link" href="#">
+							<div class="layer"></div>
+							<div class="layer"></div>
+							<div class="layer"></div><img class="grid__img layer" src="img/6.jpg" alt="06" />
+						</a>
+					</li>
+					<li class="grid__item" data-size="1280x850">
+						<a class="grid__link" href="#">
+							<div class="layer"></div>
+							<div class="layer"></div>
+							<div class="layer"></div><img class="grid__img layer" src="img/7.png" alt="07" />
+						</a>
+					</li>
+					<li class="grid__item" data-size="1280x850">
+						<a class="grid__link" href="#">
+							<div class="layer"></div>
+							<div class="layer"></div>
+							<div class="layer"></div><img class="grid__img layer" src="img/8.jpg" alt="08" />
+						</a>
+					</li>
+					<li class="grid__item" data-size="1280x850">
+						<a class="grid__link" href="#">
+							<div class="layer"></div>
+							<div class="layer"></div>
+							<div class="layer"></div><img class="grid__img layer" src="img/9.jpg" alt="09" />
+						</a>
+					</li>
+					<li class="grid__item" data-size="1280x850">
+						<a class="grid__link" href="#">
+							<div class="layer"></div>
+							<div class="layer"></div>
+							<div class="layer"></div><img class="grid__img layer" src="img/10.jpg" alt="10" />
+						</a>
+					</li>
+
+				</ul>
+				<!-- /grid -->
+				<div class="preview">
+					<button class="action action--close"><i class="fa fa-times"></i><span
+							class="text-hidden">Close</span></button>
+					<div class="description description--preview"></div>
+				</div>
+				<!-- /preview -->
+
+			</div>
+		</section>
+		<!--/intro-->
+
+	</main>
+	<script src="js/imagesloaded.pkgd.min.js"></script>
+	<script src="js/masonry.pkgd.min.js"></script>
+	<script src="js/dynamics.min.js"></script>
+	<script src="js/classie.js"></script>
+	<script src="js/main.js"></script>
+	<script>
+		(function () {
+			function getRandomInt(min, max) {
+				return Math.floor(Math.random() * (max - min + 1)) + min;
+			}
+
+			new IsoGrid(document.querySelector('.isolayer--deco1'), {
+				onGridLoaded: function () {
+					classie.add(document.body, 'grid-loaded');
+				},
+
+				transform: 'translateX(33vw) translateY(-340px) rotateX(45deg) rotateZ(-45deg)',
+				stackItemsAnimation: {
+					properties: function (pos) {
+						return {
+							translateZ: (pos + 1) * 30,
+							rotateZ: getRandomInt(-4, 4)
+						};
+					},
+					options: function (pos, itemstotal) {
+						return {
+							type: dynamics.bezier,
+							duration: 500,
+							points: [{
+								"x": 0,
+								"y": 0,
+								"cp": [{
+									"x": 0.2,
+									"y": 1
+								}]
+							}, {
+								"x": 1,
+								"y": 1,
+								"cp": [{
+									"x": 0.3,
+									"y": 1
+								}]
+							}],
+							delay: (itemstotal - pos - 1) * 40
+						};
+					}
+				}
+			});
+
+		})();
+	</script>
+
+	<script>
+		(function () {
+			var support = {
+					transitions: Modernizr.csstransitions
+				},
+				// transition end event name
+				transEndEventNames = {
+					'WebkitTransition': 'webkitTransitionEnd',
+					'MozTransition': 'transitionend',
+					'OTransition': 'oTransitionEnd',
+					'msTransition': 'MSTransitionEnd',
+					'transition': 'transitionend'
+				},
+				transEndEventName = transEndEventNames[Modernizr.prefixed('transition')],
+				onEndTransition = function (el, callback) {
+					var onEndCallbackFn = function (ev) {
+						if (support.transitions) {
+							if (ev.target != this) return;
+							this.removeEventListener(transEndEventName, onEndCallbackFn);
+						}
+						if (callback && typeof callback === 'function') {
+							callback.call(this);
+						}
+					};
+					if (support.transitions) {
+						el.addEventListener(transEndEventName, onEndCallbackFn);
+					} else {
+						onEndCallbackFn();
+					}
+				};
+
+			new GridFx(document.querySelector('.grid'), {
+				imgPosition: {
+					x: 1,
+					y: 0.75
+				},
+				pagemargin: 50,
+				onOpenItem: function (instance, item) {
+					instance.items.forEach(function (el) {
+						if (item != el) {
+							var delay = Math.floor(Math.random() * 150);
+							el.style.WebkitTransition = 'opacity .4s ' + delay +
+								'ms cubic-bezier(.7,0,.3,1), -webkit-transform .4s ' + delay +
+								'ms cubic-bezier(.7,0,.3,1)';
+							el.style.transition = 'opacity .4s ' + delay +
+								'ms cubic-bezier(.7,0,.3,1), transform .4s ' + delay +
+								'ms cubic-bezier(.7,0,.3,1)';
+
+							el.style.WebkitTransform = 'translate3d(0,400px,0)';
+							el.style.transform = 'translate3d(0,400px,0)';
+							el.style.opacity = 0;
+						}
+					});
+				},
+				onCloseItem: function (instance, item) {
+					instance.items.forEach(function (el) {
+						if (item != el) {
+							el.style.WebkitTransition = 'opacity .3s, -webkit-transform .3s';
+							el.style.transition = 'opacity .3s, transform .3s';
+
+							el.style.WebkitTransform = 'translate3d(0,0,0)';
+							el.style.transform = 'translate3d(0,0,0)';
+							el.style.opacity = 1;
+
+							onEndTransition(el, function () {
+								el.style.transition = 'none';
+								el.style.WebkitTransform = 'none';
+							});
+						}
+					});
+				}
+			});
+		})();
+	</script>
+</body>
+
+</html>
