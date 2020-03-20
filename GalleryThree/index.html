@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/gh/hmongouachon/rgbKineticSlider/js/libs/TweenMax.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/hmongouachon/rgbKineticSlider/js/libs/imagesLoaded.pkgd.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/hmongouachon/rgbKineticSlider/js/libs/pixi.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/hmongouachon/rgbKineticSlider/js/libs/pixi-filters.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/hmongouachon/rgbKineticSlider/js/rgbKineticSlider.js"></script>
+
+    <style>
+        /* demo css */
+        *,
+        *::after,
+        *::before {
+            box-sizing: border-box;
+        }
+
+        :root {
+            font-size: 15px;
+        }
+
+        body {
+            margin: 0;
+            --color-text: #aaa;
+            --color-bg: #fff;
+            --color-link: #ddd;
+            --color-link-hover: black;
+            color: var(--color-text);
+            background-color: var(--color-bg);
+            font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Page Loader */
+        .js .loading::before,
+        .js .loading::after {
+            content: '';
+            position: fixed;
+            z-index: 1000;
+        }
+
+        .js .loading::before {
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--color-bg);
+        }
+
+        .js .loading::after {
+            top: 50%;
+            left: 50%;
+            width: 60px;
+            height: 60px;
+            margin: -30px 0 0 -30px;
+            border-radius: 50%;
+            opacity: 0.4;
+            background: var(--color-link);
+            animation: loaderAnim 0.7s linear infinite alternate forwards;
+
+        }
+
+        @keyframes loaderAnim {
+            to {
+                opacity: 1;
+                transform: scale3d(0.5, 0.5, 1);
+            }
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--color-link);
+            outline: none;
+        }
+
+        a:hover,
+        a:focus {
+            color: var(--color-link-hover);
+            outline: none;
+        }
+
+        .message {
+            background: var(--color-text);
+            color: var(--color-bg);
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .frame {
+            padding: 3rem 5vw;
+            text-align: center;
+            position: relative;
+            z-index: 1000;
+        }
+
+        .frame__title {
+            font-size: 1rem;
+            margin: 0 0 1rem;
+            font-weight: normal;
+        }
+
+
+        .frame__links {
+            display: inline;
+        }
+
+        .frame__links a:not(:last-child),
+        .frame__demos a:not(:last-child) {
+            margin-right: 1rem;
+        }
+
+        .frame__demos {
+            margin: 1rem 0;
+        }
+
+        .frame__demo--current,
+        .frame__demo--current:hover {
+            color: var(--color-text);
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: calc(100vh - 13rem);
+            position: relative;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        @media screen and (min-width: 53em) {
+            .message {
+                display: none;
+            }
+
+            .frame {
+                position: fixed;
+                text-align: left;
+                z-index: 100;
+                top: 0;
+                left: 0;
+                display: grid;
+                align-content: space-between;
+                width: 100%;
+                max-width: none;
+                height: 100vh;
+                padding: 3rem;
+                pointer-events: none;
+                grid-template-columns: 75% 25%;
+                grid-template-rows: auto auto auto;
+                grid-template-areas: 'title links'
+                    '... ...'
+                    '... demos';
+            }
+
+            .frame__title-wrap {
+                grid-area: title;
+                display: flex;
+            }
+
+            .frame__title {
+                margin: 0;
+            }
+
+            .frame__tagline {
+                position: relative;
+                margin: 0 0 0 1rem;
+                padding: 0 0 0 1rem;
+                opacity: 0.5;
+            }
+
+            .frame__demos {
+                margin: 0;
+                grid-area: demos;
+                justify-self: end;
+            }
+
+            .frame__links {
+                grid-area: links;
+                padding: 0;
+                justify-self: end;
+            }
+
+            .frame a {
+                pointer-events: auto;
+            }
+
+            .content {
+                height: 100vh;
+                justify-content: center;
+            }
+        }
+
+
+        /* plugin css */
+        .rgbKineticSlider {
+            display: block;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+        }
+
+        canvas {
+            position: absolute;
+            display: block;
+            top: 0;
+            left: 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            /*margin-right: 14px;*/
+            position: absolute;
+            top: 50vh;
+
+            z-index: 1;
+
+        }
+
+
+        nav span {
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            background-color: var(--color-link-hover);
+            display: block;
+            margin-top: 7px;
+            -moz-transition: width 0.3s ease;
+            -webkit-transition: width 0.3s ease;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover span {
+            width: 0;
+        }
+
+        nav a.next {
+            right: 10vw;
+        }
+
+        nav a.prev {
+            left: 10vw;
+        }
+
+        .notice {
+            text-decoration: none;
+            /*margin-right: 14px;*/
+            position: absolute;
+            bottom: 3rem;
+            left: 3rem;
+            z-index: 1;
+            color: var(--color-link);
+        }
+
+        @media screen and (max-width: 53em) {
+            nav a {
+                top: auto;
+                bottom: 3rem;
+            }
+
+            .notice {
+                bottom: auto;
+                top: 2rem;
+                left: 10vw;
+                left: 3rem;
+            }
+        }
+
+        .heading {
+            color: white;
+            text-decoration: none;
+            /*margin-right: 14px;*/
+            position: absolute;
+            top: 20vh;
+            z-index: 1;
+        }
+
+        a.button1 {
+            display: inline-block;
+            padding: 0.55em 1.5em;
+            border: 0.1em solid #FFFFFF;
+            margin: 0 0.3em 0.3em 0;
+            border-radius: 0.12em;
+            box-sizing: border-box;
+            text-decoration: none;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 300;
+            color: #FFFFFF;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        a.button1:hover {
+            color: #000000;
+            background-color: #FFFFFF;
+        }
+    </style>
+</head>
+
+<body class="demo-1 loading">
+    <main>
+
+        <div class="content">
+            <div id="rgbKineticSlider" class="rgbKineticSlider"></div>
+            <h1 class="heading">#100DaysOfCode</h1>
+            <nav>
+                <a href="#" class="main-nav prev button1" data-nav="previous">Previous </a>
+                <a href="#" class="main-nav next button1" data-nav="next">Next </a>
+            </nav>
+        </div>
+    </main>
+</body>
+<script>
+    // images setup
+    const images = [
+        "https://w.wallhaven.cc/full/4g/wallhaven-4g8e2e.jpg",
+        "https://w.wallhaven.cc/full/n6/wallhaven-n6krwx.jpg",
+        "https://w.wallhaven.cc/full/6q/wallhaven-6q8m3w.png",
+        "https://w.wallhaven.cc/full/eo/wallhaven-eod3pr.png",
+
+    ];
+
+    // content setup
+    const texts = [];
+
+    rgbKineticSlider = new rgbKineticSlider({
+        slideImages: images, // array of images > must be 1920 x 1080
+        // itemsTitles: texts, // array of titles / subtitles
+
+        backgroundDisplacementSprite: 'http://hmongouachon.com/_demos/rgbKineticSlider/map-2.jpg', // slide displacement image 
+        cursorDisplacementSprite: 'http://hmongouachon.com/_demos/rgbKineticSlider/displace-circle.png', // cursor displacement image 
+
+        cursorImgEffect: true, // enable cursor effect
+        cursorTextEffect: false, // enable cursor text effect
+        cursorScaleIntensity: 0.85, // cursor effect intensity
+        cursorMomentum: 0.09, // lower is slower
+
+        swipe: true, // enable swipe
+        swipeDistance: window.innerWidth * 0.5, // swipe distance - ex : 580
+        swipeScaleIntensity: 1.66, // scale intensity during swipping
+
+        slideTransitionDuration: 1, // transition duration
+        transitionScaleIntensity: 10, // scale intensity during transition
+        transitionScaleAmplitude: 100, // scale amplitude during transition
+
+        nav: true, // enable navigation
+        navElement: '.main-nav', // set nav class
+
+        imagesRgbEffect: true, // enable img rgb effect
+        imagesRgbIntensity: 0.09, // set img rgb intensity
+        navImagesRgbIntensity: 40, // set img rgb intensity for regular nav
+
+        textsDisplay: false, // show title
+        textsSubTitleDisplay: false, // show subtitles
+        textsTiltEffect: false, // enable text tilt
+        googleFonts: ['Playfair Display:700', 'Roboto:400'], // select google font to use
+        // buttonMode : false, // enable button mode for title
+        // textsRgbEffect : true, // enable text rgb effect
+        // textsRgbIntensity : 0.09, // set text rgb intensity
+        // navTextsRgbIntensity : 10, // set text rgb intensity for regular nav
+
+        // textTitleColor : 'white', // title color
+        // textTitleSize : 125, // title size
+        // mobileTextTitleSize : 45, // title size
+        // textTitleLetterspacing : 3, // title letterspacing
+
+        // textSubTitleColor : 'white', // subtitle color ex : 0x000000
+        // textSubTitleSize : 21, // subtitle size
+        // mobileTextSubTitleSize : 14,
+        // textSubTitleLetterspacing : 3, // subtitle letter spacing
+        // textSubTitleOffsetTop : 90, // subtitle offset top
+        // mobileTextSubTitleOffsetTop : 50,
+    });
+</script>
+
+</html>

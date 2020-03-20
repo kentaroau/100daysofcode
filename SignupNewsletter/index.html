@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- bootstrap css cdn -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- bootstrap js cdn -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+
+</head>
+
+<style>
+    .container {
+        max-width: 960px;
+    }
+
+    body {
+        background-image: linear-gradient(21deg, #f9f4f4 68%, rgba(255, 206, 196, 0.5) 163%), linear-gradient(163deg, rgba(49, 146, 170, 0.0794448997) 86%, rgba(239, 112, 138, 0.5) 40%), linear-gradient(30deg, rgba(76, 79, 173, 0.6173675717) 22%, rgba(237, 106, 134, 0.5) 169%), linear-gradient(48deg, rgba(31, 85, 147, 0.7323890642) 64%, rgba(247, 126, 132, 0.5) 43%);
+        background-blend-mode: overlay, multiply, color, normal;
+
+    }
+
+    .widthset {
+        width: 100%;
+    }
+
+    .heading-style {
+        font-family: 'Righteous', cursive;
+        font-size: 205px;
+        font-weight: bolder;
+        -webkit-text-stroke: 2px rgba(6, 188, 209, 0.2);
+        background: #ffffff;
+        mix-blend-mode: screen;
+        padding-top: 190px;
+    }
+
+    @media (min-width: 1200px) .container,
+    .container-lg,
+    .container-md,
+    .container-sm,
+    .container-xl {
+        max-width: 1140px;
+    }
+
+    @media (min-width: 992px) .container,
+    .container-lg,
+    .container-md,
+    .container-sm {
+        max-width: 960px;
+    }
+
+    @media (min-width: 768px) .container,
+    .container-md,
+    .container-sm {
+        max-width: 720px;
+    }
+
+    @media (min-width: 576px) .container,
+    .container-sm {
+        max-width: 540px;
+    }
+
+    @media (min-width: 1200px) .container {
+        max-width: 1140px;
+    }
+
+    @media (min-width: 992px) .container {
+        max-width: 960px;
+    }
+
+    @media (min-width: 768px) .container {
+        max-width: 720px;
+    }
+
+    @media (min-width: 576px) .container {
+        max-width: 540px;
+    }
+
+
+
+    .shadow {
+        box-shadow: 0px 18px 39.1px 6.9px rgba(224, 241, 255, 0.34) !important;
+    }
+
+    .card {
+        border: 0;
+    }
+
+    .mt-15 {
+        margin-top: 15%;
+    }
+
+    .progress-wrapper {
+        height: 570px;
+        overflow: hidden;
+        border-radius: 12px;
+        -webkit-box-shadow: 0px 0px 33px 0px rgba(0, 0, 0, 0.52);
+        -moz-box-shadow: 0px 0px 33px 0px rgba(0, 0, 0, 0.52);
+        box-shadow: 0px 0px 33px 0px rgba(0, 0, 0, 0.52);
+
+    }
+
+    .wave {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+
+
+    .card-body {
+        -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+        min-height: 1px;
+        padding: 1.25rem;
+    }
+
+    .card-title {
+        margin-bottom: .75rem;
+    }
+
+    .list-unstyled {
+        padding-left: 0;
+        list-style: none;
+    }
+
+    .card {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 1px solid rgba(0, 0, 0, .125);
+        border-radius: .25rem;
+        margin-bottom: 20px;
+    }
+
+
+    .wave::before,
+    .wave::after {
+        content: "";
+        position: absolute;
+        width: 570px;
+        height: 390px;
+        bottom: 0;
+        left: 55%;
+        background-color: rgba(255, 255, 255, 0.18);
+        border-radius: 70%;
+        -webkit-transform: translateX(-50%) rotate(0);
+        transform: translateX(-50%) rotate(0);
+        -webkit-animation: rotate 6s linear infinite;
+        animation: rotate 6s linear infinite;
+        z-index: 10;
+    }
+
+    .wave::after {
+        border-radius: 30%;
+        background-color: rgba(255, 255, 255, 0.9);
+        -webkit-transform: translateX(-50%) rotate(0);
+        transform: translateX(-50%) rotate(0);
+        -webkit-animation: rotate 10s linear -5s infinite;
+        animation: rotate 10s linear -5s infinite;
+        z-index: 20;
+    }
+
+
+    @keyframes rotate {
+        50% {
+            transform: translateX(-50%) rotate(180deg);
+        }
+
+        100% {
+            transform: translateX(-50%) rotate(360deg);
+        }
+    }
+
+
+
+    @media only screen and (max-width: 768px) {
+        .heading-style {
+            font-family: 'Righteous', cursive;
+            font-size: 156px;
+        }
+
+        .progress-wrapper {
+            height: 209px;
+        }
+    }
+
+    @media only screen and (max-width: 425px) {
+        .heading-style {
+            font-family: 'Righteous', cursive;
+            font-size: 65px;
+        }
+
+        .progress-wrapper {
+            height: 148px;
+        }
+
+        .wave::before,
+        .wave::after {
+            width: 490px;
+            height: 331px;
+        }
+    }
+
+    .main {
+        margin-top: 300px;
+        color: white;
+        display: flex;
+    }
+
+    .main .form-control {
+        width: 50%;
+        display: inline-block;
+    }
+
+    .bird:hover {
+        animation: MoveUpDown 0.3s linear;
+        position: relative;
+        left: 0;
+        bottom: 0;
+
+    }
+
+    @keyframes MoveUpDown {
+
+        0% {
+            bottom: 0;
+
+        }
+
+        25% {
+            bottom: 20px;
+
+        }
+
+        50% {
+            bottom: 0;
+
+        }
+
+        75% {
+            bottom: 20px;
+
+        }
+
+        100% {
+            bottom: 0;
+
+        }
+
+    }
+</style>
+
+<body>
+
+    <section class="section">
+        <div class="container">
+            <div class="row mt-15">
+
+
+                <div class="text-center widthset">
+                    <div class="position-relative progress-wrapper"
+                        style="background-image: linear-gradient(to bottom, #0c2fd4, #0045d8, #0056d9, #0065d8, #1b73d5);">
+                        <div class="wave" style="bottom: 80%;">
+                        </div>
+
+                        <div class="main">
+                            <div>
+                                <img class="bird" width="300" src="bird.png" /> </div>
+                            <div>
+                                <h1>✉ Join cool newsletter!</h1>
+                                <p>#100DaysOfCode newsletter is awesome! Lorem ipsum dolor.</p>
+                                <input type="email" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="eg i-am-cool@example.com">
+                                <button type="submit" class="btn btn-danger">Subscribe!</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

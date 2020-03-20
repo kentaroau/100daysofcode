@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Simple Stack Effects</title>
+	<link rel="shortcut icon" href="../favicon.ico">
+	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="css/demo.css" />
+	<link rel="stylesheet" type="text/css" href="css/component.css" />
+	<!-- bootstrap css cdn -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	<!-- bootstrap js cdn -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+	</script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+	</script>
+
+	<!--[if IE]>
+  		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	<style>
+		body {
+
+			background: -webkit-linear-gradient(right, #21d4fd, #b721ff);
+			background: -o-linear-gradient(right, #21d4fd, #b721ff);
+			background: -moz-linear-gradient(right, #21d4fd, #b721ff);
+			background: linear-gradient(right, #21d4fd, #b721ff)
+		}
+
+		.container {
+			-webkit-box-shadow: 0px 0px 35px 4px rgba(0, 0, 0, 0.59);
+			-moz-box-shadow: 0px 0px 35px 4px rgba(0, 0, 0, 0.59);
+			box-shadow: 0px 0px 35px 4px rgba(0, 0, 0, 0.59);
+			border-radius: 10px;
+		}
+	</style>
+</head>
+
+<body>
+	<!--<div class="container">
+
+			<header class="codrops-header">
+				<h1>#100DaysOfCode Gallery</span></h1>	
+			</header>
+			<section>
+				<h2>Simple spread</h2>
+				<button>Toggle effect</button>
+				<figure class="stack stack-spread">
+					<img src="img/1.jpg" alt="img03"/>
+					<img src="img/2.jpg" alt="img02"/>
+					<img src="img/3.jpg" alt="img01"/>
+				</figure>
+			</section>
+			<section>
+				<h2>Fan out</h2>
+				<figure class="stack stack-fanout">
+					<img src="img/3.png" alt="img03"/>
+					<img src="img/1.png" alt="img01"/>
+					<img src="img/2.png" alt="img02"/>
+				</figure>
+			</section>
+			<section>
+				<h2>Random rotation</h2>
+				<figure class="stack stack-randomrot">
+					<img src="img/1.png" alt="img01"/>
+					<img src="img/2.png" alt="img02"/>
+					<img src="img/3.png" alt="img03"/>
+				</figure>
+			</section>
+			<section>
+				<h2>Side Slide</h2>
+				<figure class="stack stack-sideslide">
+					<img src="img/5.png" alt="img05"/>
+					<img src="img/6.png" alt="img06"/>
+					<img src="img/4.png" alt="img04"/>
+				</figure>
+			</section>
+			<section>
+				<h2>Side Grid</h2>
+				<figure class="stack stack-sidegrid">
+					<img src="img/1.png" alt="img01"/>
+					<img src="img/3.png" alt="img03"/>
+					<img src="img/4.png" alt="img04"/>
+					<img src="img/2.png" alt="img02"/>
+				</figure>
+			</section>
+			<section>
+				<h2>Peek-a-boo</h2>
+				<figure class="stack stack-peekaboo">
+					<img src="img/1.png" alt="img01"/>
+					<img src="img/2.png" alt="img02"/>
+					<img src="img/4.png" alt="img04"/>
+					<img src="img/3.png" alt="img03"/>
+				</figure>
+			</section>
+			<section>
+				<h2>Preview Grid</h2>
+				<figure class="stack stack-previewgrid">
+					<img src="img/1.png" alt="img01"/>
+					<img src="img/5.png" alt="img05"/>
+					<img src="img/3.png" alt="img03"/>
+					<img src="img/4.png" alt="img04"/>
+				</figure>
+			</section>
+			<section>
+				<h2>Corner Grid</h2>
+				<figure class="stack stack-cornergrid">
+					<img src="img/1.png" alt="img01"/>
+					<img src="img/3.png" alt="img03"/>
+					<img src="img/4.png" alt="img04"/>
+					<img src="img/5.png" alt="img05"/>
+				</figure>
+			</section>
+			<section>
+				<h2>Bouncy Grid</h2>
+				<figure class="stack stack-bouncygrid">
+					<img src="img/4.png" alt="img04"/>
+					<img src="img/2.png" alt="img02"/>
+					<img src="img/3.png" alt="img03"/>
+					<img src="img/1.png" alt="img01"/>
+				</figure>
+			</section>
+			<section>
+				<h2>Coverflow</h2>
+				<figure class="stack stack-coverflow">
+					<img src="img/3.png" alt="img03"/>
+					<img src="img/1.png" alt="img01"/>
+					<img src="img/2.png" alt="img02"/>
+				</figure>
+			</section>
+			<section>
+				<h2>Leaflet</h2>
+				<figure class="stack stack-leaflet">
+					<img src="img/2.png" alt="img02"/>
+					<img src="img/1.png" alt="img01"/>
+					<img src="img/4.png" alt="img04"/>
+					<img src="img/3.png" alt="img03"/>
+				</figure>
+			</section>
+			<section>
+				<h2>Vertical spread</h2>
+				<figure class="stack stack-vertspread">
+					<img src="img/1.png" alt="img01"/>
+					<img src="img/3.png" alt="img03"/>
+					<img src="img/2.png" alt="img02"/>
+					<img src="img/4.png" alt="img04"/>
+				</figure>
+			</section>
+			<section>
+				<h2>Elastic spread</h2>
+				<figure class="stack stack-vertelastic">
+					<img src="img/4.png" alt="img04"/>
+					<img src="img/3.png" alt="img03"/>
+					<img src="img/2.png" alt="img02"/>
+					<img src="img/1.png" alt="img01"/>
+				</figure>
+			</section>
+			<section>
+				<h2>Fan</h2>
+				<figure class="stack stack-fan">
+					<img src="img/2.png" alt="img02"/>
+					<img src="img/4.png" alt="img04"/>
+					<img src="img/1.png" alt="img01"/>
+					<img src="img/3.png" alt="img03"/>
+				</figure>
+			</section>
+			<section>
+				<h2>Queue</h2>
+				<figure class="stack stack-queue">
+					<img src="img/2.png" alt="img02"/>
+					<img src="img/1.png" alt="img01"/>
+					<img src="img/3.png" alt="img03"/>
+					<img src="img/4.png" alt="img04"/>
+				</figure>
+			</section>
+
+		</div> -->
+
+	<div class="container"
+		style="padding-bottom: 50px; background-color: white; margin-top: 100px; margin-bottom: 100px;">
+
+		<h1 class="text-center text-lg-left mt-4 mb-0">#100DaysOfCode Gallery</h1>
+
+		<hr class="mt-2 mb-5">
+
+		<div class="row">
+
+			<div class="col-lg-6 col-md-4 col-6">
+
+				<figure class="stack stack-spread">
+					<img src="img/1.jpg" alt="img03" />
+					<img src="img/2.jpg" alt="img02" />
+					<img src="img/3.jpg" alt="img01" />
+				</figure>
+
+
+			</div>
+
+			<div class="col-lg-6 col-md-4 col-6">
+
+				<figure class="stack stack-fanout">
+					<img src="img/2.jpg" alt="img03" />
+					<img src="img/3.jpg" alt="img02" />
+					<img src="img/4.jpg" alt="img01" />
+				</figure>
+
+
+			</div>
+
+			<div class="col-lg-6 col-md-4 col-6">
+
+				<figure class="stack stack-randomrot">
+					<img src="img/1.jpg" alt="img03" />
+					<img src="img/4.jpg" alt="img02" />
+					<img src="img/5.jpg" alt="img01" />
+				</figure>
+
+
+			</div>
+
+			<div class="col-lg-6 col-md-4 col-6">
+
+				<figure class="stack stack-queue">
+					<img src="img/1.jpg" alt="img03" />
+					<img src="img/4.jpg" alt="img02" />
+					<img src="img/2.jpg" alt="img01" />
+				</figure>
+
+
+			</div>
+
+			<div class="col-lg-6 col-md-4 col-6">
+
+				<figure class="stack stack-fan">
+					<img src="img/1.jpg" alt="img03" />
+					<img src="img/4.jpg" alt="img02" />
+					<img src="img/1.jpg" alt="img01" />
+				</figure>
+
+
+			</div>
+			<div class="col-lg-6 col-md-4 col-6">
+
+				<figure class="stack stack-coverflow">
+					<img src="img/1.jpg" alt="img03" />
+					<img src="img/4.jpg" alt="img02" />
+					<img src="img/4.jpg" alt="img01" />
+				</figure>
+
+
+			</div>
+		</div>
+
+	</div>
+	<!-- /.container -->
+</body>
+
+</html>
