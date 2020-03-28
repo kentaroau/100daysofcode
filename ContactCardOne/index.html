@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- jquery cdn -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <!-- fontawesome cdn -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: -webkit-box;
+            display: flex;
+            background-color: #eaeaea;
+            font-family: Open Sans;
+            font-weight: 300;
+            line-height: 1.8;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-image: linear-gradient(31deg, rgba(64, 83, 206, 0.123) 48%, rgba(250, 68, 32, 0.767) 163%), linear-gradient(123deg, rgba(49, 146, 170, 0.0794448997) 86%, rgba(239, 112, 138, 0.5) 40%), linear-gradient(30deg, rgba(211, 62, 211, 0.617) 22%, rgba(237, 106, 134, 0.5) 169%), linear-gradient(48deg, rgba(72, 111, 155, 0.732) 64%, rgba(247, 126, 132, 0.5) 43%);
+            background-blend-mode: overlay, multiply, color, normal;
+
+        }
+
+        .cards-container {
+            margin: auto;
+            background: #fff;
+            border-radius: 19px;
+            border: 2px solid black;
+            overflow: hidden;
+            /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1), 3px 5px 20px rgba(0, 0, 0, 0.2); */
+            box-shadow: 0 8px 20px rgba(74, 40, 126, 0.2);
+
+            width: 768px;
+            height: 550px;
+            position: relative;
+            display: -webkit-box;
+            display: flex;
+            justify-content: flex-end;
+            -webkit-box-align: end;
+            align-items: flex-end;
+            padding: 30px;
+        }
+
+        .cards-container .card {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        .cards-container .card-toggle {
+            z-index: 4;
+            position: relative;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: block;
+            text-align: center;
+            line-height: 1.8;
+            font-size: 24px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            -webkit-transition: .3s ease;
+            transition: .3s ease;
+        }
+
+        .cards-container .card-toggle.active {
+            color: white;
+            border-color: white;
+        }
+
+        .cards-container .card-content {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            transition: -webkit-clip-path 1s ease;
+            padding: 100px 0 0;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+
+        .cards-container .card-content .row {
+            display: table;
+            width: 100%;
+            height: 100%;
+        }
+
+        .cards-container .card-content .col {
+            width: 50%;
+            height: 100%;
+            display: table-cell;
+            -webkit-transition: .3s ease .3s;
+            transition: .3s ease .3s;
+            -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+            vertical-align: top;
+        }
+
+        .cards-container .card-content .col h2 {
+            font-weight: 300;
+            font-size: 3em;
+            line-height: 1;
+            margin: 0 0 30px;
+        }
+
+        .cards-container .card-content .col h2 strong {
+            font-weight: 700;
+            display: block;
+        }
+
+        .cards-container .card-content .col img {
+            max-width: 90%;
+            width: 100%;
+            margin-left: -200px;
+        }
+
+        .cards-container .card-content .col.left {
+            -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+            opacity: 0;
+            padding-left: 50px;
+        }
+
+        .cards-container .card-content .col.right {
+            -webkit-transform: translate3d(100px, 0, 0);
+            transform: translate3d(100px, 0, 0);
+            opacity: 0;
+            padding-left: 30px;
+        }
+
+        .cards-container .card.active .col {
+            -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+            opacity: 1;
+        }
+
+        .cards-container #overview .card-toggle {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            opacity: 1;
+            color: white;
+        }
+
+        .cards-container #overview .card-content {
+            -webkit-clip-path: circle(0% at 91.5% 75px);
+        }
+
+        .cards-container #overview.active .card-toggle {
+            opacity: 0;
+        }
+
+        .cards-container #overview.active .card-content {
+            -webkit-clip-path: circle(270% at 91.5% 75px);
+        }
+
+
+
+        .cards-container #dribbble .card-content,
+        .cards-container #instagram .card-content,
+        .cards-container #linkedin .card-content,
+        .cards-container #twitter .card-content {
+            color: white;
+        }
+
+        .cards-container #dribbble .card-content p,
+        .cards-container #instagram .card-content p,
+        .cards-container #linkedin .card-content p,
+        .cards-container #twitter .card-content p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .cards-container #dribbble .card-content {
+            background-color: #F46899;
+
+            clip-path: circle(0% at 470px 88%);
+        }
+
+        .cards-container #dribbble.active .card-content {
+            clip-path: circle(270% at 470px 88%);
+        }
+
+        .cards-container #instagram .card-content {
+
+            background: -moz-linear-gradient(-45deg, #1e5799 0%, #d321a4 63%, #ffef63 100%);
+            /* FF3.6-15 */
+            background: -webkit-linear-gradient(-45deg, #1e5799 0%, #d321a4 63%, #ffef63 100%);
+            /* Chrome10-25,Safari5.1-6 */
+            background: linear-gradient(135deg, #1e5799 0%, #d321a4 63%, #ffef63 100%);
+
+            /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+            -webkit-clip-path: circle(0% at 520px 88%);
+            clip-path: circle(0% at 520px 88%);
+        }
+
+        .cards-container #instagram.active .card-content {
+            -webkit-clip-path: circle(270% at 520px 88%);
+            clip-path: circle(270% at 520px 88%);
+        }
+
+        .cards-container #linkedin .card-content {
+
+            background-color: #03679B;
+            -webkit-clip-path: circle(0% at 570px 88%);
+            clip-path: circle(0% at 570px 88%);
+        }
+
+        .cards-container #linkedin.active .card-content {
+            -webkit-clip-path: circle(270% at 570px 88%);
+            clip-path: circle(270% at 570px 88%);
+        }
+
+        .cards-container #twitter .card-content {
+            background-color: #7FD0ED;
+            -webkit-clip-path: circle(0% at 630px 88%);
+            clip-path: circle(0% at 630px 88%);
+        }
+
+        .cards-container #twitter.active .card-content {
+            -webkit-clip-path: circle(270% at 630px 88%);
+            clip-path: circle(270% at 630px 88%);
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="cards-container">
+
+
+        <div class="card active" id="overview">
+            <a class="card-toggle"><i class="fa fa-arrow-circle-left"></i></a>
+            <div class="card-content">
+                <div class="row">
+                    <div class="left col">
+                        <h2>#100DaysOfCode <strong> Profile</strong></h2>
+
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium quisquam iusto id enim
+                            tenetur commodi,
+                            aperiam dolores neque error itaque sunt labore doloribus.
+                            Dolore nobis repellendus, nulla molestias illum eos.</p>
+                            <img src="https://i.ibb.co/zSBZCzf/1.png">
+
+                    </div>
+                    <div class="right col">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card" id="dribbble">
+            <a class="card-toggle"><i><span class="fa fa-dribbble"></span></i></a>
+            <div class="card-content">
+                <div class="row">
+                    <div class="left col">
+                        <h2><strong>Dribbble</strong></h2>
+
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium quisquam iusto id enim
+                            tenetur commodi,
+                            aperiam dolores neque error itaque sunt labore doloribus.
+                            Dolore nobis repellendus, nulla molestias illum eos.</p>
+                            <img src="https://i.ibb.co/tZfkbky/2.png">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="card" id="instagram">
+            <a class="card-toggle"><i><span class="fa fa-instagram"></span></i></a>
+            <div class="card-content">
+                <div class="row">
+                    <div class="left col">
+                        <h2><strong>instagram</strong></h2>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium quisquam iusto id enim
+                            tenetur commodi,
+                            aperiam dolores neque error itaque sunt labore doloribus.
+                            Dolore nobis repellendus, nulla molestias illum eos.</p>
+                            <img src="https://i.ibb.co/tDd5N0J/3.png">
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="card" id="linkedin">
+            <a class="card-toggle"><i><span class="fa fa-linkedin"></span></i></a>
+            <div class="card-content">
+                <div class="row">
+                    <div class="left col">
+                        <h2><strong>LinkedIn</strong></h2>
+
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium quisquam iusto id enim
+                            tenetur commodi,
+                            aperiam dolores neque error itaque sunt labore doloribus.
+                            Dolore nobis repellendus, nulla molestias illum eos.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="card" id="twitter">
+            <a class="card-toggle"><i><span class="fa fa-twitter"></span></i></a>
+            <div class="card-content">
+                <div class="row">
+                    <div class="left col">
+                        <h2><strong>Twitter</strong></h2>
+
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium quisquam iusto id enim
+                            tenetur commodi,
+                            aperiam dolores neque error itaque sunt labore doloribus.
+                            Dolore nobis repellendus, nulla molestias illum eos.</p>
+                            <img src="https://i.ibb.co/QfHFgYY/4.png">
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</body>
+<script>
+    $(".card-toggle").on("click", function () {
+
+        // Card toggle state 	
+        $(".card-toggle").removeClass("active");
+        $(this).addClass("active");
+
+        var isAnimating = false;
+
+        if (!isAnimating) {
+            isAnimating = true;
+
+            $(".card").find(".card-content").css("z-index", 0);
+            $(".card").removeClass("active");
+
+            var that = $(this);
+
+            $(this).siblings().css("z-index", 1);
+
+            setTimeout(function () {
+                that.parent().toggleClass("active").find(".card-content").on("transitionend",
+                    function () {
+                        isAnimating = false;
+                    });
+
+            }, 10);
+        } else {
+            return;
+        }
+    });
+
+    $("input,textarea").blur(function () {
+        if ($(this).val()) {
+            $(this).parent().addClass("filled");
+        } else {
+            $(this).parent().removeClass("filled");
+        }
+    });
+
+    $(".contact").on("click", function () {
+        $(".contact-form").toggleClass("active");
+    });
+    $(".contact-form input[type=submit], .contact-form .close").on("click", function (e) {
+        e.preventDefault();
+        $(".contact-form").toggleClass("active")
+    });
+</script>
+
+</html>
