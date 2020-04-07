@@ -10,8 +10,28 @@
   <meta name="author" content="Bucky Maler">
   <link rel="stylesheet" href="assets/css/main.css">
 </head>
+<!-- fontawesome cdn -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+
+/* Style the video: 100% width and height to cover the entire window */
+#myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+</style>
 <body>
 
+  <!-- The video -->
+<video autoplay muted loop id="myVideo">
+    <source src="Snow.mp4" type="video/mp4">
+  </video>
+  
 <!-- notification for small viewports and landscape oriented smartphones -->
 <div class="device-notification">
   <a class="device-notification--logo" href="#0">
@@ -27,10 +47,10 @@
       <div class="l-wrapper">
         <header class="header">
           <a class="header--logo" href="#0">
-            <img src="assets/img/logo.png" alt="Global">
+              <i class="fa fa-binoculars" aria-hidden="true"></i>
+
             <p>#100DaysOfCode</p>
           </a>
-          <button class="header--cta cta">Hire me</button>
           <div class="header--nav-toggle">
             <span></span>
           </div>
@@ -41,7 +61,7 @@
             <li><span>Portfolio</span></li>
             <li><span>About</span></li>
             <li><span>Contact</span></li>
-            <li><span>Hire us</span></li>
+            <li><span>Hire me</span></li>
           </ul>
         </nav>
         <ul class="l-main-content main-content">
@@ -59,19 +79,19 @@
                   </svg>
                   <span class="btn-background"></span>
                 </button>
-                <img src="assets/img/introduction-visual.png" alt="Welcome">
+                <img src="assets/img/hero2.png" alt="Welcome">
               </div>
               <div class="intro--options">
                 <a href="#0">
-                  <h3>Metiew &amp; Smith</h3>
+                  <h3>Heading 1</h3>
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do.</p>
                 </a>
                 <a href="#0">
-                  <h3>Fantasy interactive</h3>
+                  <h3>Heading 2</h3>
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do.</p>
                 </a>
                 <a href="#0">
-                  <h3>Paul &amp; shark</h3>
+                  <h3>Heading 3</h3>
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do.</p>
                 </a>
               </div>
@@ -79,33 +99,33 @@
           </li>
           <li class="l-section section">
             <div class="work">
-              <h2>Selected work</h2>
+              <h2>My portfolio</h2>
               <div class="work--lockup">
                 <ul class="slider">
                   <li class="slider--item slider--item-left">
                     <a href="#0">
                       <div class="slider--item-image">
-                        <img src="assets/img/work-victory.jpg" alt="Victory">
+                        <img src="assets/img/1.png" alt="Victory">
                       </div>
-                      <p class="slider--item-title">Victory</p>
+                      <p class="slider--item-title">Item 1</p>
                       <p class="slider--item-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do.</p>
                     </a>
                   </li>
                   <li class="slider--item slider--item-center">
                     <a href="#0">
                       <div class="slider--item-image">
-                        <img src="assets/img/work-metiew-smith.jpg" alt="Metiew and Smith">
+                        <img src="assets/img/2.jpg" alt="Metiew and Smith">
                       </div>
-                      <p class="slider--item-title">Metiew &amp; Smith</p>
+                      <p class="slider--item-title">Item 2</p>
                       <p class="slider--item-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do.</p>
                     </a>
                   </li>
                   <li class="slider--item slider--item-right">
                     <a href="#0">
                       <div class="slider--item-image">
-                        <img src="assets/img/work-alex-nowak.jpg" alt="Alex Nowak">
+                        <img src="assets/img/3.png" alt="Alex Nowak">
                       </div>
-                      <p class="slider--item-title">Alex Nowak</p>
+                      <p class="slider--item-title">Item 3</p>
                       <p class="slider--item-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do.</p>
                     </a>
                   </li>
@@ -133,29 +153,17 @@
           <li class="l-section section">
             <div class="about">
               <div class="about--banner">
-                <h2>We<br>believe in<br>passionate<br>people</h2>
-                <a href="#0">Career
-                  <span>
-                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 118" style="enable-background:new 0 0 150 118;" xml:space="preserve">
-                    <g transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)">
-                      <path d="M870,1167c-34-17-55-57-46-90c3-15,81-100,194-211l187-185l-565-1c-431,0-571-3-590-13c-55-28-64-94-18-137c21-20,33-20,597-20h575l-192-193C800,103,794,94,849,39c20-20,39-29,61-29c28,0,63,30,298,262c147,144,272,271,279,282c30,51,23,60-219,304C947,1180,926,1196,870,1167z"/>
-                    </g>
-                    </svg>
-                  </span>
-                </a>
-                <img src="assets/img/about-visual.png" alt="About Us">
+                <h2>About me</h2>
+
+                <p style="width: 300px;">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                     Rem explicabo accusantium placeat debitis magnam, incidunt laboriosam!
+                      Sapiente doloribus fugit vero nesciunt voluptate, aperiam recusandae eaque 
+                      debitis harum vel minima dolorum?
+                  </p>
+                <img src="assets/img/about.png" alt="About Us">
               </div>
-              <div class="about--options">
-                <a href="#0">
-                  <h3>Winners</h3>
-                </a>
-                <a href="#0">
-                  <h3>Philosophy</h3>
-                </a>
-                <a href="#0">
-                  <h3>History</h3>
-                </a>
-              </div>
+
             </div>
           </li>
           <li class="l-section section">
@@ -178,75 +186,10 @@
           </li>
           <li class="l-section section">
             <div class="hire">
-              <h2>You want us to do</h2>
+              <h2>Send me an email</h2>
               <!-- checkout formspree.io for easy form setup -->
               <form class="work-request">
-                <div class="work-request--options">
-                  <span class="options-a">
-                    <input id="opt-1" type="checkbox" value="app design">
-                    <label for="opt-1">
-                      <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                      viewBox="0 0 150 111" style="enable-background:new 0 0 150 111;" xml:space="preserve">
-                      <g transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)">
-                        <path d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z"/>
-                      </g>
-                      </svg>
-                      App Design
-                    </label>
-                    <input id="opt-2" type="checkbox" value="graphic design">
-                    <label for="opt-2">
-                      <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                      viewBox="0 0 150 111" style="enable-background:new 0 0 150 111;" xml:space="preserve">
-                      <g transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)">
-                        <path d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z"/>
-                      </g>
-                      </svg>
-                      Graphic Design
-                    </label>
-                    <input id="opt-3" type="checkbox" value="motion design">
-                    <label for="opt-3">
-                      <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                      viewBox="0 0 150 111" style="enable-background:new 0 0 150 111;" xml:space="preserve">
-                      <g transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)">
-                        <path d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z"/>
-                      </g>
-                      </svg>
-                      Motion Design
-                    </label>
-                  </span>
-                  <span class="options-b">
-                    <input id="opt-4" type="checkbox" value="ux design">
-                    <label for="opt-4">
-                      <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                      viewBox="0 0 150 111" style="enable-background:new 0 0 150 111;" xml:space="preserve">
-                      <g transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)">
-                        <path d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z"/>
-                      </g>
-                      </svg>
-                      UX Design
-                    </label>
-                    <input id="opt-5" type="checkbox" value="webdesign">
-                    <label for="opt-5">
-                      <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                      viewBox="0 0 150 111" style="enable-background:new 0 0 150 111;" xml:space="preserve">
-                      <g transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)">
-                        <path d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z"/>
-                      </g>
-                      </svg>
-                      Webdesign
-                    </label>
-                    <input id="opt-6" type="checkbox" value="marketing">
-                    <label for="opt-6">
-                      <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                      viewBox="0 0 150 111" style="enable-background:new 0 0 150 111;" xml:space="preserve">
-                      <g transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)">
-                        <path d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z"/>
-                      </g>
-                      </svg>
-                      Marketing
-                    </label>
-                  </span>
-                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum debitis, quibusdam ratione consequuntur vel explicabo quas maxime nulla cum tempora officiis illo corporis, hic natus similique! Ab voluptates non at!</p>
                 <div class="work-request--information">
                   <div class="information-name">
                     <input id="name" type="text" spellcheck="false">
@@ -267,7 +210,7 @@
   </div>
   <ul class="outer-nav">
     <li class="is-active">Home</li>
-    <li>Works</li>
+    <li>Portfolio</li>
     <li>About</li>
     <li>Contact</li>
     <li>Hire me</li>
