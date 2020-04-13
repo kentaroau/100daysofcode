@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.8.7/pixi.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/hmongouachon/rgbShiftSlider/js/rgbShiftSlider.min.js"></script>
+    <!-- jquery cdn -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Montserrat:700|Space+Mono');
+
+        *,
+        *:after,
+        *:before {
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        body,
+        html {
+            position: relative;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            background-color: #161616;
+            margin: 0;
+        }
+
+        p,
+        a {
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+
+        .notice {
+            position: absolute;
+            top: 4vw;
+            right: 4vw;
+            color: white;
+            z-index: 1;
+
+        }
+
+        .notice a {
+            color: white;
+        }
+
+
+        /*slider styles*/
+        .rgbShiftSlider {
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            /*mix-blend-mode: hard-light;*/
+            opacity: 0.85;
+            width: 100vw;
+            height: 100%;
+            overflow: hidden;
+            /*transform-origin : 50vw 300vh;*/
+            transform-origin: 50% 50%;
+        }
+
+        canvas {
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 0;
+        }
+
+        nav {
+            position: absolute;
+            top: 4vw;
+            left: 4vw;
+            z-index: 1;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 14px;
+        }
+
+        .slide__title .title-line span:nth-child(1) {
+            -webkit-transition-delay: 0.15s;
+            transition-delay: 0.15s;
+        }
+
+        .slide__title .title-line span:nth-child(2) {
+            -webkit-transition-delay: 0.3s;
+            transition-delay: 0.3s;
+        }
+        .is-active .slide__title .title-line:nth-of-type(2n) span {
+  -webkit-transition-delay: 0.2s;
+          transition-delay: 0.2s;
+}
+        .slide {
+            position: absolute;
+            top: 100px;
+            left: 50px;
+        }
+
+        .slide__title .title-line span {
+            display: inline-block;
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-size: 5em;
+            -webkit-transform: translate3d(0, 140%, 0);
+            transform: translate3d(0, 140%, 0);
+            opacity: 0;
+            -webkit-transition: opacity 0.8s ease, -webkit-transform 0.4s ease;
+            transition: opacity 0.8s ease, -webkit-transform 0.4s ease;
+            transition: transform 0.4s ease, opacity 0.8s ease;
+            transition: transform 0.4s ease, opacity 0.8s ease, -webkit-transform 0.4s ease;
+        }
+
+        .is-active .slide__title .title-line span {
+            -webkit-transform: translate3d(0, 0%, 0);
+            transform: translate3d(0, 0%, 0);
+            opacity: 1;
+            -webkit-transition: opacity 0.1s ease, -webkit-transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+            transition: opacity 0.1s ease, -webkit-transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+            transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.1s ease;
+            transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.1s ease, -webkit-transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        .white {
+            color: white
+        }
+        .small{
+            font-size: 1.5em !important;
+        }
+    </style>
+</head>
+
+<body id="canvas">
+
+    <!-- slider -->
+    <div id="rbgShiftSlider" class="rgbShiftSlider"></div>
+
+    <!-- slider nav -->
+    <nav>
+        <a href="#" class="scene-nav prev" data-nav="previous">Prev</a>
+        <a href="#" class="scene-nav next" data-nav="next">Next</a>
+    </nav>
+    <section id="slide1" class="slide">
+        <div class="slide__content">
+            <header class="slide__header">
+                <h2 class="slide__title">
+                    <span class="title-line"><span>EVA</span></span><br>
+                    <span class="title-line"><span class="small white">#100DaysOfCode</span></span>
+                </h2>
+            </header>
+        </div>
+    </section>
+    <section id="slide2" class="slide">
+        <div class="slide__content">
+            <header class="slide__header">
+                <h2 class="slide__title">
+                    <span class="title-line"><span>REI</span></span><br>
+                    <span class="title-line"><span class="small white">#100DaysOfCode</span></span>
+
+                </h2>
+            </header>
+        </div>
+    </section>
+    <section id="slide3" class="slide">
+        <div class="slide__content">
+            <header class="slide__header">
+                <h2 class="slide__title">
+                    <span class="title-line white"><span>SHINJI</span></span><br>
+                    <span class="title-line"><span class="small white">#100DaysOfCode</span></span>
+
+                </h2>
+            </header>
+        </div>
+    </section>
+
+    <section id="slide4" class="slide">
+        <div class="slide__content">
+            <header class="slide__header">
+                <h2 class="slide__title">
+                    <span class="title-line white"><span>ASUKA</span></span><br>
+                    <span class="title-line"><span class="small white">#100DaysOfCode</span></span>
+
+                </h2>
+            </header>
+        </div>
+    </section>
+
+
+</body>
+<script>
+    // set images
+    var images = [
+        "1.png",
+        "2.png",
+        "3.jpg",
+        "4.png",
+
+    ]
+    // instanciate slider
+    var rbgShiftSlider = new rbgShiftSlider({
+        nav: true,
+        navElement: '.scene-nav',
+        slideImages: images,
+        stageWidth: 1920,
+        stageHeight: 1080,
+        displacementImage: 'displace-circle.png',
+        fullScreen: false,
+        transitionDuration: 0.35, // must be 0.1 > transitionGhostDuration
+        transitionGhostDuration: 0.25,
+        transitionFilterIntensity: 350,
+        transitionSpriteIntensity: 6,
+        mouseDispIntensity: 7,
+        interactive: true,
+        autoPlay: false,
+        autoPlaySpeed: 15000,
+    });
+
+    $(document).ready(function () {
+        var slideIndex = 1;
+        $('#slide' + slideIndex).toggleClass('is-active');
+
+        $('.next').click(function () {
+
+            $('#slide' + slideIndex).toggleClass('is-active');
+
+            slideIndex++;
+            $('#slide' + slideIndex).toggleClass('is-active');
+
+
+        });
+        $('.prev').click(function () {
+            $('#slide' + slideIndex).toggleClass('is-active');
+
+            slideIndex--;
+            $('#slide' + slideIndex).toggleClass('is-active');
+
+
+        });
+
+    });
+</script>
+
+</html>

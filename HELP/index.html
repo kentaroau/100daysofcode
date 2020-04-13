@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Gift box</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./style-cards.css">
+
+  <style>
+    .box-content{
+      width: 100%;
+      position: relative;
+      z-index: 99;
+    }
+
+  </style>
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<section id="js-main" class="main">
+      <div class="box">
+        <div class="box__item box__item--base">
+
+
+          <div class="box-content">
+
+
+
+     <div id="app" class="container">
+        <card data-image="https://images.unsplash.com/photo-1479660656269-197ebb83b540?dpr=2&auto=compress,format&fit=crop&w=1199&h=798&q=80&cs=tinysrgb&crop=">
+          <h1 slot="header">Canyons</h1>
+          <p slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        </card>
+        <card data-image="https://images.unsplash.com/photo-1479659929431-4342107adfc1?dpr=2&auto=compress,format&fit=crop&w=1199&h=799&q=80&cs=tinysrgb&crop=">
+          <h1 slot="header">Beaches</h1>
+          <p slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        </card>
+        <card data-image="https://images.unsplash.com/photo-1479644025832-60dabb8be2a1?dpr=2&auto=compress,format&fit=crop&w=1199&h=799&q=80&cs=tinysrgb&crop=">
+          <h1 slot="header">Trees</h1>
+          <p slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        </card>
+        <card data-image="https://images.unsplash.com/photo-1479621051492-5a6f9bd9e51a?dpr=2&auto=compress,format&fit=crop&w=1199&h=811&q=80&cs=tinysrgb&crop=">
+          <h1 slot="header">Lakes</h1>
+          <p slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        </card>
+      </div> 
+
+
+
+          </div>
+
+        </div>
+        <div class="box__item box__item--left"></div>
+        <div class="box__item box__item--right"></div>
+        <div class="box__item box__item--top"></div>
+        <div class="box__item box__item--bottom"></div>
+        <div class="box__item box__item--shadow"></div>
+      </div>
+
+
+
+
+
+
+
+      <div id="js-cover-place" class="cover-place">
+        <div id="js-cover" class="cover">
+          <div class="cover__item cover__item--base">
+            <div id="js-base-shadow" class="cover__item__shadow"></div>
+          </div>
+          <div class="cover__item cover__item--left"></div>
+          <div class="cover__item cover__item--bottom">
+            <div id="js-bottom-shadow" class="cover__item__shadow"></div>
+          </div>
+        </div>
+      </div>
+      <div id="js-left-peel" class="peel-item peel-item--left">
+        <div class="peel-item__bg">
+          <div id="js-left-inner" class="peel-item__bg__inner"></div>
+        </div>
+        <div class="peel-item__white"></div>
+        <div class="peel-item__gradient"></div>
+      </div>
+      <div id="js-right-peel" class="peel-item peel-item--right">
+        <div class="peel-item__bg">
+          <div id="js-right-inner" class="peel-item__bg__inner"></div>
+        </div>
+        <div class="peel-item__white"></div>
+        <div class="peel-item__gradient"></div>
+      </div>
+      <div id="js-line1" class="line-item line-item--hor"></div>
+      <div id="js-line2" class="line-item line-item--vert">
+        <div class="bow">
+          <div class="bow__content"></div>
+          <div class="threads">
+            <div class="thread-left">
+              <div class="thread-left__content"></div>
+            </div>
+            <div class="thread-right">
+              <div class="thread-right__content"></div>
+            </div>
+          </div><a href="#" id="js-tag" class="tag">
+            <div class="tag__content"></div>
+            <div class="tag__text">Happy Birthday, Jeff!</div></a>
+        </div>
+      </div>
+      <div id="js-scroll-suggest" class="scroll-suggest">
+        <div class="scroll-suggest__content"></div>
+      </div>
+      <div id="js-scroll-suggest-mask" class="scroll-suggest scroll-suggest--mask">
+        <div class="scroll-suggest__content"></div>
+      </div> 
+    </section>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/6859/tweenmax.min.js'></script>
+<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/6859/jquery.superscrollorama.js'></script>
+<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/6859/iscroll.js'></script><script  src="./script.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.1/vue.min.js'>
+</script><script  src="./script-cards.js"></script>
+
+</body>
+</html>

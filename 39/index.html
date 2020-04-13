@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Montserrat:700|Space+Mono');
+
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: 'Montserrat', Arial, sans-serif;
+        overflow: none;
+
+    }
+
+    nav.btns {
+        position: absolute;
+        top: 45%;
+        width: 100%;
+    }
+
+    nav.btns button {
+        position: absolute;
+        display: inline-block;
+        width: 44px;
+        height: 44px;
+        text-align: center;
+        line-height: 44px;
+        font-weight: bold;
+        font-size: 10px;
+        font-family: serif;
+        border-radius: 50%;
+        background-color: #fff;
+        cursor: pointer;
+        border: 0;
+        transition: all 0.5s ease;
+    }
+
+    nav.btns button:focus {
+        outline: 0;
+    }
+
+    nav.btns button:before {
+        content: '';
+        position: absolute;
+        width: 44px;
+        height: 44px;
+        top: 0;
+        left: 0;
+        border: 2px solid white;
+        border-radius: 50%;
+        opacity: 0;
+        transition: all 0.5s ease;
+    }
+
+    nav.btns button span {
+        opacity: 0;
+        transition: opacity 0.2s ease;
+    }
+
+    nav.btns button:hover {
+        background-color: white;
+        width: 64px;
+        height: 64px;
+        transform: translateY(-10px);
+    }
+
+    nav.btns button:hover:before {
+        opacity: 1;
+        width: 104px;
+        height: 104px;
+        top: -22px;
+        left: -22px;
+    }
+
+    nav.btns button:hover span {
+        opacity: 1;
+    }
+
+    nav.btns button.show-prev {
+        left: 15%;
+    }
+
+    nav.btns button.show-next {
+        right: 15%;
+    }
+</style>
+<!-- jquery cdn -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+<style>
+    #canvas {
+        width: 100%;
+        height: 100%;
+    }
+    .is-active .slide__title .title-line:nth-of-type(2n) span {
+  -webkit-transition-delay: 0.2s;
+          transition-delay: 0.2s;
+    }
+    .slide__title .title-line span {
+        position: absolute;
+        top:15px;
+        left: 30%;
+        color: white;
+        display: inline-block;
+        font-family: 'Montserrat', Arial, sans-serif;
+        font-size: 5em;
+        -webkit-transform: translate3d(0, 140%, 0);
+        transform: translate3d(0, 140%, 0);
+        opacity: 0;
+        /* -webkit-transition: opacity 0.8s ease, -webkit-transform 0.4s ease;
+        transition: opacity 0.8s ease, -webkit-transform 0.4s ease;
+        transition: transform 0.4s ease, opacity 0.8s ease;
+        transition: transform 0.4s ease, opacity 0.8s ease, -webkit-transform 0.4s ease; */
+    }
+    .slide__title .title-line span:nth-child(2){
+        top:115px;
+        font-size: 1.5em;
+    }
+
+    .is-active .slide__title .title-line span {
+        -webkit-transform: translate3d(0, 0%, 0);
+        transform: translate3d(0, 0%, 0);
+        opacity: 1;
+        -webkit-transition: opacity 0.1s ease, -webkit-transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+        transition: opacity 0.1s ease, -webkit-transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+        transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.1s ease;
+        transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.1s ease, -webkit-transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+</style>
+
+<body>
+    <canvas id="canvas"></canvas>
+    <div id="heading0" class="">
+        <div class="slide__title">
+            <div class="title-line">
+                <span>ONE</span>
+                <span>#100DaysOfCode</span>
+
+            </div>
+        </div>
+    </div>
+    <div id="heading1" class="">
+        <div class="slide__title">
+            <div class="title-line">
+                <span>TWO</span>
+                <span>#100DaysOfCode</span>
+
+            </div>
+
+        </div>
+    </div>
+    <div id="heading2" class="">
+        <div class="slide__title">
+            <div class="title-line">
+                <span>THREE</span>
+                <span>#100DaysOfCode</span>
+
+            </div>
+
+        </div>
+    </div>
+    <div id="heading3" class="">
+        <div class="slide__title">
+            <div class="title-line">
+                <span>FOUR</span>
+                <span>#100DaysOfCode</span>
+
+            </div>
+
+        </div>
+    </div>
+    <nav class="btns">
+        <button class="show-prev"><span>PREV</span></button>
+        <button class="show-next"><span>NEXT</span></button>
+    </nav>
+
+</body>
+<script src="index.js"></script>
+
+</html>
