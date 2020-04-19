@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Letter effects</title>
+	<meta name="description"
+		content="An inspirational set of letter animations for display typography powered by anime.js" />
+	<meta name="keywords" content="typography, animation, effect, web design, javascript, anime.js" />
+	<link rel="shortcut icon" href="favicon.ico">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,800;0,900;1,900&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/decolines.css" />
+	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="css/demo.css" />
+	<link rel="stylesheet" type="text/css" href="css/lettereffect.css" />
+	<!--[if IE]>
+  		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	<script>
+		document.documentElement.className = 'js';
+	</script>
+	<!-- jquery cdn -->
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+	<style>
+		.image-1 {
+			animation-delay: 0.5s;
+			animation: move 3s ease both;
+			background-image: url('1.jpg');
+			background-repeat: no-repeat;
+			background-size: cover;
+
+			opacity: 0;
+		}
+
+		.image-2 {
+			animation-delay: 0.5s;
+
+			animation: move 3s ease both;
+			background-image: url('2.png');
+			background-repeat: no-repeat;
+			background-size: cover;
+			opacity: 0;
+		}
+
+		.image-3 {
+			animation-delay: 0.5s;
+
+			animation: move 3s ease both;
+			background-image: url('3.png');
+			background-repeat: no-repeat;
+			background-size: cover;
+			opacity: 0;
+		}
+
+		.image-4 {
+			animation-delay: 0.5s;
+
+			animation: move 3s ease both;
+			background-image: url('4.jpg');
+			background-repeat: no-repeat;
+			background-size: cover;
+			opacity: 0;
+		}
+
+
+
+		@keyframes move {
+			from {
+				opacity: 0;
+
+
+			}
+
+			to {
+				opacity: 1;
+			}
+		}
+	</style>
+</head>
+
+<body>
+
+	<main>
+
+		<section class="content content--c1" id="section1">
+			<div class="slideshow slideshow--1" data-effect="fx3">
+				<div class="slide slide--current">
+					<h2 class="title">#100DaysOfCode</h2>
+				</div>
+				<div class="slide">
+					<h2 class="title">One</h2>
+				</div>
+				<div class="slide">
+					<h2 class="title">Two</h2>
+				</div>
+				<div class="slide">
+					<h2 class="title" style="top:-200px; left:-50px">Three</h2>
+				</div>
+				<div class="slide">
+					<h2 class="title">Four</h2>
+				</div>
+			</div>
+			<nav class="actions">
+				<button class="btn btn--trigger btn--prev">Previous</button>
+				<button class="btn btn--trigger btn--next">Next</button>
+			</nav>
+		</section>
+
+
+	</main>
+
+
+	<script src="js/charming.min.js"></script>
+	<script src="js/anime.min.js"></script>
+	<script src="js/imagesloaded.pkgd.min.js"></script>
+	<script src="js/textfx.js"></script>
+	<script>
+		(function () {
+			/*
+			How to use the plugin:
+			
+			// Initialize
+			var txt = new TextFx(this.el.querySelector('.title'));
+			
+			// Show letters: 
+			// txt.show([effect] [,callback]);
+			// If nothing is passed, then no animation.
+			// ´effect´ can either be one of the predefined effects: ['fx1',...,'fx17'] or a object literal representing both in and out animations (anime.js based):
+			// example:
+			effect = {
+				in: {
+					duration: 500,
+					delay: function(el, index) { 
+						return 250+index*40; 
+					},
+					easing: 'easeOutExpo',
+					opacity: 1,
+					translateY: ['50%','0%']
+				},
+				out: {
+					duration: 500,
+					delay: function(el, index) { 
+						return index*40; 
+					},
+					easing: 'easeOutExpo',
+					opacity: 0,
+					translateY: '-50%'
+				}
+			}
+			// ´callback´ is the callback function, after all the letters finish the animation.
+			
+			// Hide letters: 
+			// txt.hide([effect] [,callback]); (same logic of show)
+			 */
+
+			// For demo purposes only:
+			// Let´s build a simple slideshow to exemplify the TextFx plugin:
+			function resetAnimation() {
+				var el = document.getElementById('section1');
+				el.style.animation = 'none';
+				el.offsetHeight; /* trigger reflow */
+				el.style.animation = null;
+			}
+
+
+			var imageClasses = ['','image-1', 'image-2', 'image-3', 'image-4'];
+			// Body element. 
+			var bodyEl = document.body;
+			// Preload all images..
+			imagesLoaded(bodyEl, {
+				background: true
+			}, function () {
+				bodyEl.classList.remove('loading');
+			});
+
+			// Slide obj: each Slideshow´s slide will contain the HTML element and the instance of TextFx.
+			var Slide = function (el) {
+					this.el = el;
+					this.txt = new TextFx(this.el.querySelector('.title'));
+				},
+				// The Slideshow obj.
+				Slideshow = function (el) {
+					this.el = el;
+					this.current = 0;
+					this.slides = [];
+					var self = this;
+					[].slice.call(this.el.querySelectorAll('.slide')).forEach(function (slide) {
+						self.slides.push(new Slide(slide));
+					});
+					this.slidesTotal = this.slides.length;
+					this.effect = this.el.getAttribute('data-effect');
+				};
+
+			Slideshow.prototype._navigate = function (direction) {
+				if (this.isAnimating) {
+					return false;
+				}
+				this.isAnimating = true;
+
+				var self = this,
+					currentSlide = this.slides[this.current];
+
+				this.current = direction === 'next' ? (this.current < this.slidesTotal - 1 ? this.current + 1 : 0) : (
+					this.current = this.current > 0 ? this.current - 1 : this.slidesTotal - 1);
+				var nextSlide = this.slides[this.current];
+
+				var checkEndCnt = 0,
+					checkEnd = function () {
+						++checkEndCnt;
+						if (checkEndCnt === 2) {
+							currentSlide.el.classList.remove('slide--current');
+							nextSlide.el.classList.add('slide--current');
+							self.isAnimating = false;
+						}
+					};
+
+				// Call the TextFx hide method and pass the effect string defined in the data-effect attribute of the Slideshow element.
+				currentSlide.txt.hide(this.effect, function () {
+					currentSlide.el.style.opacity = 0;
+					checkEnd();
+				});
+				// First hide the next slide´s TextFx text.
+				nextSlide.txt.hide();
+				nextSlide.el.style.opacity = 1;
+				// And now call the TextFx show method.
+				nextSlide.txt.show(this.effect, function () {
+					checkEnd();
+				});
+			};
+
+			Slideshow.prototype.next = function () {
+				this._navigate('next');
+			};
+
+			Slideshow.prototype.prev = function () {
+				this._navigate('prev');
+			};
+
+			var index = 0;
+			[].slice.call(document.querySelectorAll('.content')).forEach(function (el, pos) {
+				var slideshow = new Slideshow(el.querySelector('.slideshow'));
+				el.querySelector('.actions').firstElementChild.addEventListener('click', function () {
+					resetAnimation();
+					$('#section1').removeClass(imageClasses[index]);
+
+
+					setTimeout(function () {
+
+						slideshow.prev();
+						index--;
+						$('#section1').addClass(imageClasses[index]);
+
+					}, 100);
+				});
+				el.querySelector('.actions').lastElementChild.addEventListener('click', function () {
+
+
+					resetAnimation();
+					$('#section1').removeClass(imageClasses[index]);
+
+
+					index++;
+						$('#section1').addClass(imageClasses[index]);
+
+					setTimeout(function () {
+						slideshow.next();
+
+
+					}, 200);
+
+
+
+				});
+
+			});
+
+
+
+
+		})();
+	</script>
+</body>
+
+</html>
