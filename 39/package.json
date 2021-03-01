@@ -22,6 +22,6 @@
     "copyfiles": "^2.2.0",
     "midori-bg": "^0.5.6",
     "parcel-bundler": "^1.12.4",
-    "three": "^0.115.0"
+    "three": "^0.125.0"
   }
 }
